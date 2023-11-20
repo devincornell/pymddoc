@@ -1,0 +1,5 @@
+
+readme:
+	python README.py
+
+
