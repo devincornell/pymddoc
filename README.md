@@ -101,16 +101,16 @@ The document object now contains all the information needed to construct the mar
     >> ---
     >> 
     >> 
-    >>         # example header
-    >>         
-    >>         + item 1
-    >>         + item 2
-    >>         
-    >>         | col 1 | col 2 |
-    >>         |-------|-------|
-    >>         | a     | b     |
-    >>         | c     | d     |
+    >>     # example header
     >>     
+    >>     + item 1
+    >>     + item 2
+    >>     
+    >>     | col 1 | col 2 |
+    >>     |-------|-------|
+    >>     | a     | b     |
+    >>     | c     | d     |
+    >> 
     >> 
     >> ```python
     >>     def mytestfunc(a, b):
@@ -139,15 +139,15 @@ Use the `render_html()` method to render the document to html using pandoc.
 ###### output:
 
 ```
-    >> <pre><code>    # example header
-    >>     
-    >>     + item 1
-    >>     + item 2
-    >>     
-    >>     | col 1 | col 2 |
-    >>     |-------|-------|
-    >>     | a     | b     |
-    >>     | c     | d     |</code></pre>
+    >> <pre><code># example header
+    >> 
+    >> + item 1
+    >> + item 2
+    >> 
+    >> | col 1 | col 2 |
+    >> |-------|-------|
+    >> | a     | b     |
+    >> | c     | d     |</code></pre>
     >> <div class="sourceCode" id="cb2"><pre
     >> class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mytestfunc(a, b):</span>
     >> <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">+</span> b</span>

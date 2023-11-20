@@ -2,8 +2,8 @@
 import pymddoc
 import inspect
 
-
 def readme_doc() -> pymddoc.DocMaker:
+    import pymddoc
 
     document = pymddoc.Document(
         title = 'pymddoc Introduction',
@@ -72,8 +72,6 @@ def readme_doc() -> pymddoc.DocMaker:
 
     Create the code snippet like the following:
     ''')
-
-    print(document.components[-1])
         
     with document.snippet(inspect.currentframe()):
         with doc.snippet(inspect.currentframe(), print_stdout=True):
