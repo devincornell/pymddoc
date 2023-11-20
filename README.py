@@ -1,8 +1,17 @@
----
-title: pymddoc Introduction
----
+
+import pymddoc
+import inspect
 
 
+document = pymddoc.Document(
+    title = 'pymddoc Introduction',
+    snippet_template=pymddoc.templates.default(
+        stdout_header='###### output:'
+    ),
+)
+
+
+document.markdown('''
             
 # `pymddoc` Introduction
 
@@ -20,19 +29,16 @@ Steps for creating a document:
 
 The first step in creating a document is to call the `Document` function, which returns a `DocMaker` object. This object will be used to create the document. This function takes a number of parameters for metadata, templates, and other configurations. See the API documentation for more details.
 
+''')
 
-
-```python
+with document.snippet(inspect.currentframe()):
     import pymddoc
     doc = pymddoc.Document(
         title = 'My Document',
         date = 'Nov 20, 2023',
     )
-```
 
-
-
-
+document.markdown('''
 ### Markdown
 
 We can insert markdown using the `.markdown()` method. Simply pass a string to the method and it will be inserted into the document directly. 
@@ -40,9 +46,9 @@ We can insert markdown using the `.markdown()` method. Simply pass a string to t
 Note that this is standard markdown, so you may use any features supported by your markdown compiler (pandoc if you use the built-in html renderer).
 
 Here I will define a new function and print the result.
+''')
 
-
-```python
+with document.snippet(inspect.currentframe()):
     doc.markdown('''
         # example header
         
@@ -54,105 +60,52 @@ Here I will define a new function and print the result.
         | a     | b     |
         | c     | d     |
     ''')
-```
-
-
-
-
+    
+document.markdown('''
 ### Code Snippets
 
 Create code snippets using the `.snippet()` method. When executed, it returns a context manager that captures the source code and stdout as a markdown code block (denoted by "```").
 
 Create the code snippet like the following:
+''')
 
-
-```python
+print(document.components[-1])
+    
+with document.snippet(inspect.currentframe()):
     with doc.snippet(inspect.currentframe(), print_stdout=True):
         def mytestfunc(a, b):
             return a + b
         print(mytestfunc(1, 2))
-```
-
-###### output:
-
-```
-    >> 3
-```
 
 
-
+document.markdown('''
 ### Rendering the Document
 
 The document object now contains all the information needed to construct the markdown, including metadata, source code, and stdout of the code snippets. Use the `render_markdown()` method to render the document to markdown.
+''')
 
-
-```python
+with document.snippet(inspect.currentframe()):
     print(doc.render_markdown())
-```
 
-###### output:
-
-```
-    >> ---
-    >> title: My Document
-    >> date: 2023-11-20 00:00:00
-    >> ---
-    >> 
-    >> 
-    >>         # example header
-    >>         
-    >>         + item 1
-    >>         + item 2
-    >>         
-    >>         | col 1 | col 2 |
-    >>         |-------|-------|
-    >>         | a     | b     |
-    >>         | c     | d     |
-    >>     
-    >> 
-    >> ```python
-    >>     def mytestfunc(a, b):
-    >>         return a + b
-    >>     print(mytestfunc(1, 2))
-    >> ```
-    >> 
-    >> 
-    >> 
-    >> ```
-    >>     >> 3
-    >> ```
-```
-
-
-
+document.markdown('''
 You can see that the source code and stdout are included in the markdown. The stdout is indented and the source code is stripped of its baseline indentation.
 
 Use the `render_html()` method to render the document to html using pandoc.
+''')
 
-
-```python
+with document.snippet(inspect.currentframe()):
     print(doc.render_html())
-```
 
-###### output:
-
-```
-    >> <pre><code>    # example header
-    >>     
-    >>     + item 1
-    >>     + item 2
-    >>     
-    >>     | col 1 | col 2 |
-    >>     |-------|-------|
-    >>     | a     | b     |
-    >>     | c     | d     |</code></pre>
-    >> <div class="sourceCode" id="cb2"><pre
-    >> class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mytestfunc(a, b):</span>
-    >> <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">+</span> b</span>
-    >> <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(mytestfunc(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
-    >> <pre><code>    &gt;&gt; 3</code></pre>
-```
-
+document.markdown('''
 You can see that the output is now html which can be inserted into a larger template. Simply add html tags manually if you wish to create a web page (although it will likely render without).                  
+''')
 
+if __name__ == '__main__':
+    md = document.render_markdown()
+    print(md)
+    with open('README.md', 'w') as f:
+        f.write(md)
+
+    with open('README.html', 'w') as f:
+        f.write(document.render_html())
 
