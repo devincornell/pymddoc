@@ -12,11 +12,13 @@ title: pymddoc Introduction
 
 Steps for creating a document:
 
-1. create a .py script that contains code to generate the document
-2. create a `Document` with templates and metadata
+1. create a .py script that will contain code to generate the document
+2. create a `DocMaker` object by calling `Document` with desired templates and metadata
 3. add markdown using the `.markdown()` method
 4. add code snippets using the context manager returned by the `.snippet()` method
 5. render the document to markdown or html
+
+### Open a New Document
 
 The first step in creating a document is to call the `Document` function, which returns a `DocMaker` object. This object will be used to create the document. This function takes a number of parameters for metadata, templates, and other configurations. See the API documentation for more details.
 
@@ -152,6 +154,8 @@ Use the `render_html()` method to render the document to html using pandoc.
     >> <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(mytestfunc(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
     >> <pre><code>    &gt;&gt; 3</code></pre>
 ```
+
+
 
 You can see that the output is now html which can be inserted into a larger template. Simply add html tags manually if you wish to create a web page (although it will likely render without).                  
 

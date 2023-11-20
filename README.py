@@ -21,11 +21,13 @@ document.markdown('''
 
 Steps for creating a document:
 
-1. create a .py script that contains code to generate the document
-2. create a `Document` with templates and metadata
+1. create a .py script that will contain code to generate the document
+2. create a `DocMaker` object by calling `Document` with desired templates and metadata
 3. add markdown using the `.markdown()` method
 4. add code snippets using the context manager returned by the `.snippet()` method
 5. render the document to markdown or html
+
+### Open a New Document
 
 The first step in creating a document is to call the `Document` function, which returns a `DocMaker` object. This object will be used to create the document. This function takes a number of parameters for metadata, templates, and other configurations. See the API documentation for more details.
 
@@ -106,6 +108,7 @@ if __name__ == '__main__':
     with open('README.md', 'w') as f:
         f.write(md)
 
-    with open('README.html', 'w') as f:
-        f.write(document.render_html())
+    if False:
+        with open('README.html', 'w') as f:
+            f.write(document.render_html())
 
