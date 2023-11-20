@@ -31,9 +31,7 @@ class Markdown:
     @classmethod
     def remove_indent(cls, text: str) -> str:
         '''Remove the indent level of the text.'''
-        #indents = cls.map_line(lambda l: len(l) - len(l.lstrip()), text)
-        #return cls.split_map_join(lambda l: l[min(indents):], text)
-        indents = map_line(lambda l: len(l) - len(l.lstrip()) if len(l) > 0 else float('inf'), source)
+        indents = map_line(lambda l: len(l) - len(l.lstrip()) if len(l) > 0 else float('inf'), text)
         start_indent = min(indents) if len(indents) > 0 else 0
         return split_map_join(lambda l: l[start_indent:], text)
     

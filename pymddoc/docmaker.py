@@ -129,7 +129,7 @@ class DocMaker:
         
         for comp in self.components:
             if isinstance(comp, Markdown):
-                output += comp.text
+                output += comp.get_text()
             elif isinstance(comp, SnippetInfo):
                 output += comp.render()
             output += '\n\n'
