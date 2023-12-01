@@ -9,8 +9,9 @@ import pypandoc # type: ignore
 import datetime
 
 from .markdown import Markdown
-from .snippet import SnippetCtx, SnippetFormatter, SnippetTemplateType, SnippetInfo
+from .snippet import SnippetCtx, SnippetFormatter, SnippetTemplateType, SnippetInfo, split_map_join
 from .metadata import Metadata
+
 
 Component = typing.Union[Markdown, SnippetInfo]
 
@@ -133,6 +134,8 @@ class DocMaker:
             elif isinstance(comp, SnippetInfo):
                 output += comp.render()
             output += '\n\n'
+            
+        output = split_map_join(lambda l: l if len(l.strip()) > 0 else l.strip(), output)
         return output
     
     
