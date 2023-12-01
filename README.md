@@ -46,15 +46,15 @@ Here I will define a new function and print the result.
 
 ```python
     doc.markdown('''
-        # example header
-        
-        + item 1
-        + item 2
-        
-        | col 1 | col 2 |
-        |-------|-------|
-        | a     | b     |
-        | c     | d     |
+    # example header
+    
+    + item 1
+    + item 2
+    
+    | col 1 | col 2 |
+    |-------|-------|
+    | a     | b     |
+    | c     | d     |
     ''')
 ```
 
@@ -101,15 +101,15 @@ The document object now contains all the information needed to construct the mar
     >> ---
     >> 
     >> 
-    >>     # example header
-    >>     
-    >>     + item 1
-    >>     + item 2
-    >>     
-    >>     | col 1 | col 2 |
-    >>     |-------|-------|
-    >>     | a     | b     |
-    >>     | c     | d     |
+    >> # example header
+    >> 
+    >> + item 1
+    >> + item 2
+    >> 
+    >> | col 1 | col 2 |
+    >> |-------|-------|
+    >> | a     | b     |
+    >> | c     | d     |
     >> 
     >> 
     >> ```python
@@ -139,19 +139,33 @@ Use the `render_html()` method to render the document to html using pandoc.
 ###### output:
 
 ```
-    >> <pre><code># example header
-    >> 
-    >> + item 1
-    >> + item 2
-    >> 
-    >> | col 1 | col 2 |
-    >> |-------|-------|
-    >> | a     | b     |
-    >> | c     | d     |</code></pre>
-    >> <div class="sourceCode" id="cb2"><pre
-    >> class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mytestfunc(a, b):</span>
-    >> <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">+</span> b</span>
-    >> <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(mytestfunc(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
+    >> <h1 id="example-header">example header</h1>
+    >> <ul>
+    >> <li>item 1</li>
+    >> <li>item 2</li>
+    >> </ul>
+    >> <table>
+    >> <thead>
+    >> <tr class="header">
+    >> <th>col 1</th>
+    >> <th>col 2</th>
+    >> </tr>
+    >> </thead>
+    >> <tbody>
+    >> <tr class="odd">
+    >> <td>a</td>
+    >> <td>b</td>
+    >> </tr>
+    >> <tr class="even">
+    >> <td>c</td>
+    >> <td>d</td>
+    >> </tr>
+    >> </tbody>
+    >> </table>
+    >> <div class="sourceCode" id="cb1"><pre
+    >> class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mytestfunc(a, b):</span>
+    >> <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">+</span> b</span>
+    >> <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(mytestfunc(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div>
     >> <pre><code>    &gt;&gt; 3</code></pre>
 ```
 

@@ -54,15 +54,15 @@ def main() -> pymddoc.DocMaker:
 
     with document.snippet(inspect.currentframe()):
         doc.markdown('''
-            # example header
-            
-            + item 1
-            + item 2
-            
-            | col 1 | col 2 |
-            |-------|-------|
-            | a     | b     |
-            | c     | d     |
+        # example header
+        
+        + item 1
+        + item 2
+        
+        | col 1 | col 2 |
+        |-------|-------|
+        | a     | b     |
+        | c     | d     |
         ''')
         
     document.markdown('''
