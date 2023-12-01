@@ -2,7 +2,7 @@
 import pymddoc
 import inspect
 
-def readme_doc() -> pymddoc.DocMaker:
+def main() -> pymddoc.DocMaker:
     import pymddoc
 
     document = pymddoc.Document(
@@ -105,7 +105,7 @@ def readme_doc() -> pymddoc.DocMaker:
     return document
 
 if __name__ == '__main__':
-    document = readme_doc()
+    document = main()
     md = document.render_markdown()
     print(md)
     with open('README.md', 'w') as f:
