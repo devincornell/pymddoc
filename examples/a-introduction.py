@@ -1,4 +1,6 @@
 
+import sys
+sys.path.append('..')
 import pymddoc
 import inspect
 
@@ -106,8 +108,7 @@ def main() -> pymddoc.DocMaker:
 
 if __name__ == '__main__':
     document = main()
-    md = document.render_markdown()
-    print(md)
-    with open('README.md', 'w') as f:
+    md = document.render_markdown(include_yaml=False)
+    with open('../docs/a-intro.md', 'w') as f:
         f.write(md)
 
