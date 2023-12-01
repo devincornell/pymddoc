@@ -1,5 +1,6 @@
 
 ################## INSTALLING ##################
+PACKAGE_NAME = pymddoc
 
 reinstall: uninstall install
 	@echo "reinstalled"
