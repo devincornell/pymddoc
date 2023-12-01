@@ -1,4 +1,4 @@
-site_name: doctable
+site_name: pymddoc
 theme:
   name: material
   icon:
