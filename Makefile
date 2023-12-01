@@ -14,7 +14,7 @@ install:
 ################## DOCS ##################
 REQUIREMENTS_FOLDER = ./requirements/
 EXAMPLE_NOTEBOOK_FOLDER = ./examples/# this is where example notebooks are stored
-EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER = ./docs/# this is where example notebooks are stored
+EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER = ./docs/documentation/# this is where example notebooks are stored
 
 docs: readme requirements compile_examples mkdocs
 	@echo "docs built"
