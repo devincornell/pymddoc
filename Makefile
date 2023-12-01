@@ -43,8 +43,8 @@ requirements:
 
 compile_examples:
 	-mkdir $(EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER)
-	jupyter nbconvert --to markdown $(EXAMPLE_NOTEBOOK_FOLDER)/*.ipynb
-	mv $(EXAMPLE_NOTEBOOK_FOLDER)/*.md $(EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER)
+	-jupyter nbconvert --to markdown $(EXAMPLE_NOTEBOOK_FOLDER)/*.ipynb
+	-mv $(EXAMPLE_NOTEBOOK_FOLDER)/*.md $(EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER)
 
 	cd $(EXAMPLE_NOTEBOOK_FOLDER); \
 		for FILE in *.py; do \

@@ -1,10 +1,10 @@
 ---
-title: pymddoc Introduction
+title: Introduction
 ---
 
 
-            
-# `pymddoc` Introduction
+
+# Introduction
 
 `pymddoc`\* is a python package for creating markdown documents with embedded code snippets.
 
@@ -47,10 +47,10 @@ Here I will define a new function and print the result.
 ```python
     doc.markdown('''
     # example header
-    
+
     + item 1
     + item 2
-    
+
     | col 1 | col 2 |
     |-------|-------|
     | a     | b     |
