@@ -1,8 +1,11 @@
 import typing
 from pathlib import Path
 import dataclasses
-from .metadata import Metadata
 import pypandoc
+import json
+
+from .metadata import Metadata
+
 
 @dataclasses.dataclass
 class MarkdownDocument:
@@ -11,7 +14,7 @@ class MarkdownDocument:
 
     @classmethod
     def from_file(cls, fpath: Path) -> typing.Self:
-        with fpath.open('r') as f:
+        with Path(fpath).open('r') as f:
             return cls.from_str(f.read())
         
     @classmethod
@@ -33,7 +36,6 @@ class MarkdownDocument:
             format='md',
             extra_args=extra_args,
         )
-
         
     def extract_metadata(self) -> Metadata:
         '''Get metadata from the document'''

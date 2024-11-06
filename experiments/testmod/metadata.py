@@ -2,9 +2,11 @@ import typing
 import tempfile
 import pypandoc
 from pathlib import Path
+import json
 
 class Metadata(dict[str,str|int|bool|float]):
-    '''Store and manage metadata'''
+    '''Store and manage document metadata. dict subtype.'''
+
     def from_markdown_text(markdown_text: str) -> dict[str,typing.Any]:
         '''Read metadata from pandoc yaml header.'''
         with tempfile.TemporaryDirectory() as tmp:
