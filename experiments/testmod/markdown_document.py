@@ -4,6 +4,7 @@ import dataclasses
 import pypandoc
 import json
 import tempfile
+import jinja2
 
 from .metadata import Metadata
 
@@ -22,6 +23,7 @@ class MarkdownDocument:
     def from_str(cls, md_text: str) -> typing.Self:
         return cls(str(md_text))
     
+    ###################### Converting to Other Formats with Pandoc ######################
     def convert_text(self,
         to_format: typing.Literal['html'],
         template: typing.Optional[Path] = None,
@@ -69,9 +71,23 @@ class MarkdownDocument:
                 **kwargs,
             )
 
+    ###################### Rendering with Jinja ######################
+    def jinja_render(self, 
+        vars: dict[str,typing.Any],
+        globals: dict[str,typing.Callable],
+    ) -> typing.Self:
+        '''Return the same document rendered as a jinja template.'''
+        return self.__class__(self.as_jinja_template(globals=globals).render(vars))
+
+    def as_jinja_template(self, globals: dict[str,typing.Callable]) -> jinja2.Template:
+        env = jinja2.Environment()
+        return env.from_string(
+            source = self.md_text,
+            globals = globals,
+        )
+
+    ###################### Extract Component Data ######################
     def extract_metadata(self) -> Metadata:
         '''Get metadata from the document'''
         return Metadata.from_markdown_text(self.md_text)
-
-
-
+    
