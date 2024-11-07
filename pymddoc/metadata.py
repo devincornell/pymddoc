@@ -1,57 +1,33 @@
-from __future__ import annotations
-import dataclasses
-import dateutil.parser
-
-import io
-import contextlib
 import typing
-import inspect
+import tempfile
+import pypandoc
+from pathlib import Path
+import json
 
-import datetime
+class Metadata(dict[str,str|int|bool|float]):
+    '''Store and manage document metadata. dict subtype.'''
 
-@dataclasses.dataclass
-class Metadata:
-    title: str
-    subtitle: str
-    author: str
-    date: datetime.datetime
-    other_metadata: typing.Dict[str, str]
-    
-    @classmethod
-    def new(cls, 
-        title: typing.Optional[str] = None,
-        subtitle: typing.Optional[str] = None,
-        author: typing.Optional[str] = None,
-        date: typing.Optional[typing.Union[str, datetime.datetime]] = None,
-        **other_metadata,
-    ) -> Metadata:
-        return cls(
-            title = title,
-            subtitle = subtitle,
-            author = author,
-            date = dateutil.parser.parse(date) if date is not None else None,
-            other_metadata = other_metadata,
-        )
-        
-    def render_yaml(self) -> str:
-        '''Render this text as yaml. Looks funky bc copilot wrote it.
-        '''
-        return '\n'.join([
-            '---',
-            *[
-                f'{k}: {v}'
-                for k, v in self.asdict().items() if v is not None
-            ],
-            '---\n\n',
-        ])
-    
-    def asdict(self):
-        '''Flatten to dict.'''
-        return {
-            'title': self.title,
-            'subtitle': self.subtitle,
-            'author': self.author,
-            'date': self.date,
-            **self.other_metadata,
-        }
-    
+    def from_markdown_text(markdown_text: str) -> dict[str,typing.Any]:
+        '''Read metadata from pandoc yaml header.'''
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_template_path = Path(f'{tmp}/metadata.pandoc-tpl')
+            #tmp_output_path = Path(f'{tmp}/output.txt')
+
+            # write the template text to a file
+            with tmp_template_path.open('w') as f:
+                f.write('$meta-json$')
+            
+            # run conversion to the template
+            converted = pypandoc.convert_text(
+                str(markdown_text), 
+                to='html',
+                format='md',
+                #outputfile=str(tmp_output_path),
+                extra_args=[
+                    f'--template={tmp_template_path}'
+                ],
+            )
+            #with tmp_output_path.open('r') as f:
+            #    return json.load(f)
+            return json.loads(converted)
+
