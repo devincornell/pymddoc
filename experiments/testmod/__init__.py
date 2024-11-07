@@ -1,2 +1,2 @@
-from .markdown_document import MarkdownDocument
+from .markdown_doc import MarkdownDoc
 from .metadata import Metadata

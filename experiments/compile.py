@@ -19,7 +19,7 @@ import testmod
 
 
 if __name__ == '__main__':
-    doc = testmod.MarkdownDocument.from_file('template.md')
+    doc = testmod.MarkdownDoc.from_file('template.md')
     print(doc)
 
     print(doc.extract_metadata())

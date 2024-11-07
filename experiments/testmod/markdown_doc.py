@@ -11,7 +11,7 @@ from .metadata import Metadata
 
 
 @dataclasses.dataclass
-class MarkdownDocument:
+class MarkdownDoc:
     '''Used to manipulate markdown data using pypandoc.'''
     md_text: str
 
