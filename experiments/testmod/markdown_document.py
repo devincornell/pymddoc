@@ -1,6 +1,7 @@
 import typing
 from pathlib import Path
 import dataclasses
+import jinja2.meta
 import pypandoc
 import json
 import tempfile
@@ -16,11 +17,13 @@ class MarkdownDocument:
 
     @classmethod
     def from_file(cls, fpath: Path) -> typing.Self:
+        '''Read markdown from the file.'''
         with Path(fpath).open('r') as f:
             return cls.from_str(f.read())
         
     @classmethod
     def from_str(cls, md_text: str) -> typing.Self:
+        '''Instantiate from a string.'''
         return cls(str(md_text))
     
     ###################### Converting to Other Formats with Pandoc ######################
@@ -74,17 +77,34 @@ class MarkdownDocument:
     ###################### Rendering with Jinja ######################
     def jinja_render(self, 
         vars: dict[str,typing.Any],
-        globals: dict[str,typing.Callable],
+        globals: typing.Optional[dict[str,typing.Callable]] = None,
+        strict: bool = False,
     ) -> typing.Self:
         '''Return the same document rendered as a jinja template.'''
-        return self.__class__(self.as_jinja_template(globals=globals).render(vars))
+        o = self.__class__(self.as_jinja_template(globals=globals).render(vars))
+        if strict and len(o.get_jinja_variables()):
+            raise ValueError(f'strict=True but not all jinja template variables '
+                f'have been provided: {o.get_jinja_variables()}')
+    
+    def get_jinja_variables(self) -> list[str]:
+        '''Get list of jinja variables to populate.'''
+        env = self._get_jinja_environment()
+        return jinja2.meta.find_undeclared_variables(env.parse(self.md_text))
 
-    def as_jinja_template(self, globals: dict[str,typing.Callable]) -> jinja2.Template:
-        env = jinja2.Environment()
+    def as_jinja_template(self,
+        globals: typing.Optional[dict[str,typing.Callable]] = None
+    ) -> jinja2.Template:
+        '''Get a jinja template of the current document.'''
+        env = self._get_jinja_environment()
         return env.from_string(
             source = self.md_text,
             globals = globals,
         )
+    
+    @staticmethod
+    def _get_jinja_environment(**environment_kwargs) -> jinja2.Environment:
+        '''Get environment for jinja. Consistency across the object.'''
+        return jinja2.Environment(**environment_kwargs)
 
     ###################### Extract Component Data ######################
     def extract_metadata(self) -> Metadata:

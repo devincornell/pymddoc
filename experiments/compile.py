@@ -24,4 +24,5 @@ if __name__ == '__main__':
 
     print(doc.extract_metadata())
 
-    print(doc.convert_file('myfile.docx'))
+    #print(doc.convert_file('myfile.docx'))
+    print(doc.get_jinja_variables())
