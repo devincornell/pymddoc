@@ -26,3 +26,6 @@ if __name__ == '__main__':
 
     #print(doc.convert_file('myfile.docx'))
     print(doc.get_jinja_variables())
+
+    print(doc.pandoc_convert_text(to_format='html'))
+    print(doc.render_html(vars={'image_base_url': 'https://storage.googleapis.com/public_data_09324832787'}))

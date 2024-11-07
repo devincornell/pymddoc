@@ -27,13 +27,32 @@ class MarkdownDoc:
         return cls(str(md_text))
     
     ###################### Converting to Other Formats with Pandoc ######################
-    def convert_text(self,
+    def render_html(self,
+        vars: typing.Optional[dict[str,typing.Any]] = None,
+        strict: bool = False,
+        **pandoc_kwargs,
+    ) -> str:
+        '''Render the markdown document as a jinja template and then.'''
+        if vars is not None:
+            rendered = self.jinja_render(
+                vars=vars if vars is not None else {}, 
+                strict=strict
+            )
+        else:
+            rendered = self
+        return rendered.pandoc_convert_text(to_format='html', **pandoc_kwargs)
+
+    ###################### Converting to Other Formats with Pandoc ######################
+    def pandoc_convert_text(self,
         to_format: typing.Literal['html'],
         template: typing.Optional[Path] = None,
         extra_args: typing.Optional[list[str]] = None,
         **kwargs
     ) -> str:
-        '''Convert the markdown file to another template.'''
+        '''Convert the markdown file to another template.
+            See this page for more about pandoc markdown:
+                https://quarto.org/docs/authoring/markdown-basics.html
+        '''
         extra_args = extra_args if extra_args is not None else []
         if template is not None:
             extra_args.append(f'--template={template}')
@@ -46,14 +65,17 @@ class MarkdownDoc:
             **kwargs
         )
     
-    def convert_file(self,
+    def pandoc_convert_file(self,
         output: Path,
         output_format: typing.Optional[typing.Literal['html', 'pdf', 'docx']] = None,
         template: typing.Optional[Path] = None,
         extra_args: typing.Optional[list[str]] = None,
         **kwargs
     ) -> str | bytes:
-        '''Convert the markdown text to a file.'''
+        '''Convert the markdown text to a file using pandoc.
+            See this page for more about pandoc markdown:
+                https://quarto.org/docs/authoring/markdown-basics.html
+        '''
         output = Path(output)
 
         extra_args = extra_args if extra_args is not None else []
@@ -77,28 +99,59 @@ class MarkdownDoc:
     ###################### Rendering with Jinja ######################
     def jinja_render(self, 
         vars: dict[str,typing.Any],
-        globals: typing.Optional[dict[str,typing.Callable]] = None,
         strict: bool = False,
     ) -> typing.Self:
         '''Return the same document rendered as a jinja template.'''
-        o = self.__class__(self.as_jinja_template(globals=globals).render(vars))
+        try:
+            o = self.__class__(self.as_jinja_template().render(vars))
+        except jinja2.exceptions.TemplateSyntaxError as e:
+            if 'Missing end of comment tag' in e.message:
+                e.message = ('Missing end of comment tag, maybe due to '
+                    'issue with markdown classes. Be sure to use "{ #id" '
+                    'when specifying an ID using pandoc\'s marking tool '
+                )
+            raise self._add_line_number_to_exception_message(e)
+        
         if strict and len(o.get_jinja_variables()):
             raise ValueError(f'strict=True but not all jinja template variables '
                 f'have been provided: {o.get_jinja_variables()}')
+        return o
     
     def get_jinja_variables(self) -> list[str]:
         '''Get list of jinja variables to populate.'''
         env = self._get_jinja_environment()
-        return jinja2.meta.find_undeclared_variables(env.parse(self.md_text))
+        try:
+            return jinja2.meta.find_undeclared_variables(env.parse(self.md_text))
+        except jinja2.exceptions.TemplateSyntaxError as e:
+            raise self._add_line_number_to_exception_message(e)
 
     def as_jinja_template(self,
-        globals: typing.Optional[dict[str,typing.Callable]] = None
     ) -> jinja2.Template:
         '''Get a jinja template of the current document.'''
         env = self._get_jinja_environment()
         return env.from_string(
             source = self.md_text,
-            globals = globals,
+        )
+    
+    @staticmethod
+    def _add_line_number_to_exception_message(
+        e: jinja2.exceptions.TemplateSyntaxError
+    ) -> jinja2.exceptions.TemplateSyntaxError:
+        '''Add line number to error message of TemplateSyntaxError.'''
+        if 'Missing end of comment tag' in e.message:
+            addendum = ('This may be due to lack of whitespace around curly '
+                'brackets in markdown classes. Use spacing such as "{ #id" '
+                'when specifying an ID using pandoc\'s marking tool. It may '
+                'otherwise be some other interaction between jinja and pandoc.'
+            )
+        else:
+            addendum = ''
+
+        return jinja2.exceptions.TemplateSyntaxError(
+            message=f'{e.message} on line {e.lineno}. {addendum}',
+            lineno=e.lineno,
+            name=e.name,
+            filename=e.filename,
         )
     
     @staticmethod
