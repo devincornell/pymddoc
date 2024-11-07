@@ -14,12 +14,12 @@ from pathlib import Path
 import tempfile
 import json
 
-import testmod
-
-
+import sys
+sys.path.append('..')
+import pymddoc
 
 if __name__ == '__main__':
-    doc = testmod.MarkdownDoc.from_file('template.md')
+    doc = pymddoc.MarkdownDoc.from_file('template.md')
     print(doc)
 
     print(doc.extract_metadata())

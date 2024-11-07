@@ -8,7 +8,7 @@ import typing
 import inspect
 import pypandoc
 
-from .snippet import split_map_join, map_line
+from ..snippet import split_map_join, map_line
 
 @dataclasses.dataclass
 class Markdown:

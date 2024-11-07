@@ -9,8 +9,8 @@ import pypandoc # type: ignore
 import datetime
 
 from .markdown import Markdown
-from .snippet import SnippetCtx, SnippetFormatter, SnippetTemplateType, SnippetInfo, split_map_join
-from .metadata import Metadata
+from ..snippet import SnippetCtx, SnippetFormatter, SnippetTemplateType, SnippetInfo, split_map_join
+from ..metadata import Metadata
 
 
 Component = typing.Union[Markdown, SnippetInfo]
