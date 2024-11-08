@@ -70,7 +70,7 @@ class MarkdownDoc:
     ) -> str:
         '''Render the markdown document to html with jinja/pandoc.'''
         return self.render_to_string(
-            to_format='html',
+            output_format='html',
             vars=vars,
             strict=strict,
             **pandoc_kwargs,
@@ -87,17 +87,17 @@ class MarkdownDoc:
         '''Render the markdown document to a file using jinja/pandoc.'''
         with tempfile.TemporaryDirectory() as tmp:
             rendered = self.jinja_render(
-                vars={**get_builtin_methods(tmp), **vars}, 
+                vars={**get_builtin_methods(tmp_dir=tmp, output_format=output_format), **vars}, 
                 strict=strict,
             )
             return rendered.pandoc_convert_file(
                 output=output, 
                 output_format=output_format,
                 **pandoc_kwargs
-            )
+            ) # typing: ignore
 
     def render_to_string(self,
-        to_format: typing.Literal['html'],
+        output_format: typing.Literal['html'],
         vars: typing.Optional[dict[str,typing.Any]] = None,
         strict: bool = True,
         **pandoc_kwargs,
@@ -105,15 +105,15 @@ class MarkdownDoc:
         '''Render the markdown document to a string using jinja/pandoc.'''
         with tempfile.TemporaryDirectory() as tmp:
             rendered = self.jinja_render(
-                vars={**get_builtin_methods(tmp), **vars}, 
+                vars={**get_builtin_methods(tmp_dir=tmp, output_format=output_format), **vars}, 
                 strict=strict,
             )
-            return rendered.pandoc_convert_text(to_format=to_format, **pandoc_kwargs)
+            return rendered.pandoc_convert_text(output_format=output_format, **pandoc_kwargs)
 
 
     ###################### Converting to Other Formats with Pandoc ######################
     def pandoc_convert_text(self,
-        to_format: typing.Literal['html'],
+        output_format: typing.Literal['html'],
         template: typing.Optional[Path] = None,
         extra_args: typing.Optional[list[str]] = None,
         **kwargs
@@ -129,7 +129,7 @@ class MarkdownDoc:
         
         return pypandoc.convert_text(
             source=self.md_text, 
-            to=to_format,
+            to=output_format,
             format='md',
             extra_args=extra_args,
             **kwargs
@@ -177,7 +177,7 @@ class MarkdownDoc:
             # NOTE: we won't always need this temp directory - it will be ignored if builtin
             # methods are defined in the caller.
             with tempfile.TemporaryDirectory() as tmp:
-                vars = {**get_builtin_methods(tmp), **vars}
+                vars = {**get_builtin_methods(tmp_dir=tmp, output_format=None), **vars}
                 o = self.__class__(self.as_jinja_template().render(vars))
         except jinja2.exceptions.TemplateSyntaxError as e:
             if 'Missing end of comment tag' in e.message:

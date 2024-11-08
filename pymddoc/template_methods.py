@@ -8,6 +8,48 @@ import fitz
 
 from .util import val_or_None, TempPath
 
+def get_builtin_methods(
+        tmp_dir: str,
+        output_format: typing.Literal['html', 'pdf', 'docx'] | None,
+) -> dict[str,typing.Callable]:
+    '''Return a dictionary of template methods.'''
+    return {
+        'csv_to_markdown': csv_to_md,
+        'excel_to_markdown': excel_to_md,
+        'svg_to_png': functools.partial(svg_to_png, tmp_dir),
+        'pdf_to_png': functools.partial(pdf_to_png, tmp_dir),
+        'HOME_DIR': str(pathlib.Path('~/').expanduser()),
+        'OUTPUT_FORMAT': output_format,
+    }
+
+
+
+def svg_to_png(tmpfolder: str, url: str, dpi: int = 300, **kwargs) -> str:
+    '''Convert an svg file to a png file stored in /tmp for pandoc compilation.
+    Args:
+        url: str: The url of the svg file to convert.
+        dpi: int: The dpi of the output image.
+        kwargs: dict: Additional keyword arguments to pass to cairosvg.svg2png().
+    '''
+    outfile = f"{tmpfolder}/{pathlib.Path(url).name}.png"
+    cairosvg.svg2png(url=url, write_to=outfile, dpi=dpi, **kwargs)
+    return outfile
+
+def pdf_to_png(tmpfolder: str, filename: str, pageno: int = 0, dpi: int = 300, **kwargs) -> str:
+    '''Convert a pdf file to a png file stored in /tmp for pandoc compilation.
+    Args:
+        filename: str: The filename of the pdf file to convert.
+        pageno: int: The page number of the svg file to convert.
+        dpi: int: The dpi of the output image.
+        kwargs: dict: Additional keyword arguments to pass to page.get_pixmap().
+    '''
+    outfile = f"{tmpfolder}/{pathlib.Path(filename).name}.png"
+    doc = fitz.open(filename)
+    page = doc.load_page(pageno)
+    pixmap = page.get_pixmap(dpi=dpi, **kwargs)
+    pixmap.save(outfile)
+    return outfile
+
 
 def csv_to_md(
     fname: str, 
@@ -86,40 +128,6 @@ def table_to_md(
     return df_md
 
 
-def svg_to_png(tmpfolder: str, url: str, dpi: int = 300, **kwargs) -> str:
-    '''Convert an svg file to a png file stored in /tmp for pandoc compilation.
-    Args:
-        url: str: The url of the svg file to convert.
-        dpi: int: The dpi of the output image.
-        kwargs: dict: Additional keyword arguments to pass to cairosvg.svg2png().
-    '''
-    outfile = f"{tmpfolder}/{pathlib.Path(url).name}.png"
-    cairosvg.svg2png(url=url, write_to=outfile, dpi=dpi, **kwargs)
-    return outfile
-
-def pdf_to_png(tmpfolder: str, filename: str, pageno: int = 0, dpi: int = 300, **kwargs) -> str:
-    '''Convert a pdf file to a png file stored in /tmp for pandoc compilation.
-    Args:
-        filename: str: The filename of the pdf file to convert.
-        pageno: int: The page number of the svg file to convert.
-        dpi: int: The dpi of the output image.
-        kwargs: dict: Additional keyword arguments to pass to page.get_pixmap().
-    '''
-    outfile = f"{tmpfolder}/{pathlib.Path(filename).name}.png"
-    doc = fitz.open(filename)
-    page = doc.load_page(pageno)
-    pixmap = page.get_pixmap(dpi=dpi, **kwargs)
-    pixmap.save(outfile)
-    return outfile
 
 
-def get_builtin_methods(tmp_dir: str = '/tmp/') -> dict[str,typing.Callable]:
-    '''Return a dictionary of template methods.'''
-    return {
-        'csv_to_markdown': csv_to_md,
-        'excel_to_markdown': excel_to_md,
-        'svg_to_png': functools.partial(svg_to_png, tmp_dir),
-        'pdf_to_png': functools.partial(pdf_to_png, tmp_dir),
-        'home_dir': str(pathlib.Path('~/').expanduser()),
-    }
 
