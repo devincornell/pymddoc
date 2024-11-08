@@ -3,6 +3,38 @@ title: Introduction
 ---
 
 
+# Features
+
++ [ ] bibtex/citations
++ [ ] read pdf files for pdf/docx conversion
++ [ ] support for svg images
+
++ [ ] metadata editing
++ [ ] excellent support code snippets
++ [x] read and convert tables to markdown
++ [x] comments (supported through jinja)
+
+## Inserting Tables
+
+You can insert tables into the markdown document using the builtin jinja function `csv_to_markdown`. This function will read the referenced CSV file and convert it to markdown format using pandas so it can be inserted directly in the document before compilation.
+
+```markdown
+{{ csv_to_markdown('data/testtable.csv') }}
+```
+
+## SVG Images
+
+The pandoc PDF compiler does not have native support for SVG images, but you can use the builtin jinja function `svg_to_png` to convert local or remote svg images to png for compilation. The function will download the image (if it is remote) and convert it to a png file in a temporary directory. The function returns the path to that temporary file, which can be referenced directly in the markdown document..
+
+```markdown
+![Alt text.]({{svg_to_png("https://storage.googleapis.com/public_data_09324832787/static_factory_methods.svg")}}){ #hello .myclass size="80%" }
+```
+
+## PDF Images
+
+
+
+# Depricated
 
 # Introduction
 

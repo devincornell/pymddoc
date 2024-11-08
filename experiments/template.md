@@ -13,4 +13,16 @@ def main():
     print(f'Why the heck would you go there?')
 ```
 
-![]({{image_base_url}}/blog_topicmodel_topic_presence_nyt.png){ #hello .myclass size="80%" }
+![]({{svg_to_png("https://storage.googleapis.com/public_data_09324832787/static_factory_methods.svg")}}){ #hello .myclass size="80%" }
+
+
+![]({{pdf_to_png("data/hist_rt_comparison.pdf")}}){ .myclass size="80%" }
+
+![](data/hist_rt_comparison.pdf){ .myclass size="80%" }
+
+
+::: {.classname}
+{{ csv_to_markdown('data/testtable.csv') }}
+:::
+
+{# this is a comment! #}
