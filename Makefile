@@ -69,4 +69,11 @@ clean_build:
 	-rm -r dist
 	-rm -r build
 
+################## testing / linting ##################
+test:
+	cd tests; pytest *.py
+
+mypy:
+	python -m mypy pymddoc --python-version=3.11
+
 

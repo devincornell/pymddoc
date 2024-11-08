@@ -10,7 +10,7 @@ def test_compile_basics():
     print(doc.extract_metadata())
 
     #print(doc.convert_file('myfile.docx'))
-    print(doc.get_jinja_variables())
+    print(doc.get_template_variables())
 
     #print(doc.pandoc_convert_text(to_format='html'))
     #print(doc.render_html(vars={'image_base_url': 'https://storage.googleapis.com/public_data_09324832787'}))
@@ -27,6 +27,7 @@ def test_compile_basics():
 
     html_str = doc.render_html(
         vars={'test_variable': 'replaced_variable_value'},
+        strict_render=True,
     )
     assert('test_variable' not in html_str) # variable replacement
     assert('replaced_variable_value' in html_str) # check if variable was replaced properly
@@ -40,13 +41,11 @@ def test_compile_basics():
     assert('three' in html_str) # table insertion
 
     doc.render_to_pdf(
-        output='test_outputs/test_output.pdf', 
-        vars={'test_variable': 'replaced_variable_value'},
+        output_path='test_outputs/test_output.pdf', 
     )
 
     doc.render_to_docx(
-        output='test_outputs/test_output.docx', 
-        vars={'test_variable': 'replaced_variable_value'},
+        output_path='test_outputs/test_output.docx', 
     )
 
 
