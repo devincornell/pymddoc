@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import typing
 import tempfile
 import pypandoc
@@ -7,7 +9,8 @@ import json
 class Metadata(dict[str,str|int|bool|float]):
     '''Store and manage document metadata. dict subtype.'''
 
-    def from_markdown_text(markdown_text: str) -> dict[str,typing.Any]:
+    @classmethod
+    def from_markdown_text(cls, markdown_text: str) -> typing.Self:
         '''Read metadata from pandoc yaml header.'''
         with tempfile.TemporaryDirectory() as tmp:
             tmp_template_path = Path(f'{tmp}/metadata.pandoc-tpl')
@@ -29,5 +32,5 @@ class Metadata(dict[str,str|int|bool|float]):
             )
             #with tmp_output_path.open('r') as f:
             #    return json.load(f)
-            return json.loads(converted)
+            return cls(json.loads(converted))
 

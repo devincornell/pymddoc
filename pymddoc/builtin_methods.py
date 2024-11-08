@@ -11,7 +11,7 @@ from .util import val_or_None, TempPath
 def get_builtin_methods(
         tmp_dir: str,
         output_format: typing.Literal['html', 'pdf', 'docx'] | None,
-) -> dict[str,typing.Callable]:
+) -> dict[str,typing.Callable|str|None]:
     '''Return a dictionary of template methods.'''
     return {
         'csv_to_markdown': csv_to_md,

@@ -59,7 +59,7 @@ class PandocArgs:
         if self.citeproc_bibliography is not None:
             extra_args += ['--citeproc', f'--bibliography {self.citeproc_bibliography}']
 
-        return extra_args, self.pandoc_kwargs
+        return extra_args, val_or_None(self.pandoc_kwargs, {})
 
 
 
@@ -77,7 +77,7 @@ def pandoc_convert_text(
         input_text: the markdown text to convert.
         input_format: the format of the input file.
         output_format: the format of the output file.
-        args: the arguments for the pandoc conversion.
+        pandoc_args: the arguments for the pandoc conversion.
     '''
     pandoc_args = val_or_None(pandoc_args, PandocArgs())
     extra_args, kwargs = pandoc_args.to_list()
@@ -96,7 +96,7 @@ def pandoc_convert_file(
     output_path: Path,
     output_format: typing.Optional[typing.Literal['html', 'pdf', 'docx']] = None,
     pandoc_args: PandocArgs | None = None,
-) -> str | bytes:
+) -> str:
     '''Convert the markdown text to a file using pandoc.
         See this page for more about pandoc markdown:
             https://quarto.org/docs/authoring/markdown-basics.html

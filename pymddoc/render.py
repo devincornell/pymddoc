@@ -5,12 +5,17 @@ import pathlib
 import jinja2.meta
 
 
-def jinja_render(self, 
+def jinja_render(
     input_text: str,
     vars: dict[str,typing.Any],
     strict: bool = True,
-) -> typing.Self:
-    '''Return the same document rendered as a jinja template.'''
+) -> str:
+    '''Return the same document rendered as a jinja template.
+    Args:
+        input_text: the text to render.
+        vars: the variables to substitute into the jinja template.
+        strict: if True, raise an error if not all variables are provided.
+    '''
     try:
         # NOTE: not sure which of these causes the exception
         template = text_as_jinja_template(input_text)
@@ -18,19 +23,22 @@ def jinja_render(self,
     except jinja2.exceptions.TemplateSyntaxError as e:
         raise _add_line_number_to_exception_message(e)
     
-    if strict and (jv := len(get_jinja_variables(input_text=rendered_text))):
+    if strict and (jv := len(jinja_get_variables(input_text=rendered_text))):
         raise ValueError(f'strict=True but not all jinja template variables '
             f'have been provided: {jv}')
     return rendered_text
 
 
-def get_jinja_variables(input_text: str) -> list[str]:
-    '''Get list of jinja variables to populate.'''
+def jinja_get_variables(input_text: str) -> list[str]:
+    '''Get list of jinja variables to populate.
+    Args:
+        input_text: the text to look for variables in.
+    '''
     env = _get_jinja_environment()
     try:
         # NOTE: not sure which of these causes the exception
         parsed = env.parse(input_text)
-        return jinja2.meta.find_undeclared_variables(parsed)
+        return list(jinja2.meta.find_undeclared_variables(parsed))
     except jinja2.exceptions.TemplateSyntaxError as e:
         raise _add_line_number_to_exception_message(e)
 
@@ -46,7 +54,6 @@ def text_as_jinja_template(
         globals = globals,
     )
 
-@staticmethod
 def _add_line_number_to_exception_message(
     e: jinja2.exceptions.TemplateSyntaxError
 ) -> jinja2.exceptions.TemplateSyntaxError:

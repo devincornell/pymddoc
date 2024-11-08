@@ -2,7 +2,7 @@ import typing
 from pathlib import Path
 import dataclasses
 import jinja2.meta
-import pypandoc
+import pypandoc # type: ignore
 import json
 import jinja2
 import tempfile
@@ -10,6 +10,12 @@ import tempfile
 from .metadata import Metadata
 from .builtin_methods import get_builtin_methods
 from .util import val_or_None
+
+from .render import jinja_render, jinja_get_variables
+from .compile import pandoc_convert_text, pandoc_convert_file, PandocArgs
+
+
+
 
 @dataclasses.dataclass
 class MarkdownDoc:
@@ -34,206 +40,141 @@ class MarkdownDoc:
 
     ###################### type-specific methods ######################
     def render_to_docx(self,
-        output: Path,
+        output_path: Path,
         vars: typing.Optional[dict[str,typing.Any]] = None,
-        strict: bool = True,
-        **pandoc_kwargs,
-    ) -> str:
+        strict_render: bool = True,
+        pandoc_args: PandocArgs | None = None,
+    ) -> str | bytes:
         '''Render the markdown document as a jinja template and then.'''
         return self.render_to_file(
-            output=output,
+            output_path=output_path,
             output_format='docx',
             vars=vars,
-            strict=strict,
-            **pandoc_kwargs,
+            strict_render=strict_render,
+            pandoc_args=pandoc_args,
         )
 
     def render_to_pdf(self,
-        output: Path,
+        output_path: Path,
         vars: typing.Optional[dict[str,typing.Any]] = None,
-        strict: bool = True,
-        **pandoc_kwargs,
+        strict_render: bool = True,
+        pandoc_args: PandocArgs | None = None,
     ) -> str:
         '''Render the markdown document as a jinja template and then.'''
         return self.render_to_file(
-            output=output,
+            output_path=output_path,
             output_format='pdf',
             vars=vars,
-            strict=strict,
-            **pandoc_kwargs,
+            strict_render=strict_render,
+            pandoc_args=pandoc_args,
         )
 
     def render_html(self,
         vars: typing.Optional[dict[str,typing.Any]] = None,
-        strict: bool = True,
-        **pandoc_kwargs,
+        strict_render: bool = True,
+        pandoc_args: PandocArgs | None = None,
     ) -> str:
         '''Render the markdown document to html with jinja/pandoc.'''
         return self.render_to_string(
             output_format='html',
             vars=vars,
-            strict=strict,
-            **pandoc_kwargs,
+            strict_render=strict_render,
+            pandoc_args=pandoc_args,
         )
     
     ###################### generic rendering ######################
     def render_to_file(self,
-        output: Path,
+        output_path: Path,
         output_format: typing.Literal['html', 'pdf', 'docx'] | None = None,
         vars: typing.Optional[dict[str,typing.Any]] = None,
-        strict: bool = True,
-        **pandoc_kwargs,
+        strict_render: bool = True,
+        pandoc_args: PandocArgs | None = None,
     ) -> str:
-        '''Render the markdown document to a file using jinja/pandoc.'''
+        '''Render/compile the markdown document to a file using jinja/pandoc.
+        Args:
+            output_path: path to the output file.
+            output_format: the format of the output file.
+            vars: the variables to substitute into the jinja template.
+            strict_render: if True, raise an error if not all variables are provided.
+            pandoc_args: the arguments for the pandoc conversion.
+        '''
         with tempfile.TemporaryDirectory() as tmp:
-            rendered = self.jinja_render(
-                vars={**get_builtin_methods(tmp_dir=tmp, output_format=output_format), **vars}, 
-                strict=strict,
+
+            # jinja render step
+            rendered = jinja_render(
+                input_text=self.md_text,
+                vars={
+                    **get_builtin_methods(
+                        tmp_dir=tmp, 
+                        output_format=output_format
+                    ), 
+                    **val_or_None(vars, {}),
+                }, 
+                strict=strict_render,
             )
-            return rendered.pandoc_convert_file(
-                output=output, 
-                output_format=output_format,
-                **pandoc_kwargs
-            ) # typing: ignore
+
+            # create dummy file to temporarily dump input
+            tmp_source_path = Path(f'{tmp}/source_input.md')
+            with tmp_source_path.open('w') as f:
+                f.write(rendered)
+
+            return pandoc_convert_file(
+                input_path=tmp_source_path,
+                input_format='md',
+                output_path=output_path,
+                output_format=output_format, 
+                pandoc_args=pandoc_args,
+            )
+
 
     def render_to_string(self,
         output_format: typing.Literal['html'],
         vars: typing.Optional[dict[str,typing.Any]] = None,
-        strict: bool = True,
-        **pandoc_kwargs,
+        strict_render: bool = True,
+        pandoc_args: PandocArgs | None = None,
     ) -> str:
-        '''Render the markdown document to a string using jinja/pandoc.'''
-        with tempfile.TemporaryDirectory() as tmp:
-            rendered = self.jinja_render(
-                vars={**get_builtin_methods(tmp_dir=tmp, output_format=output_format), **vars}, 
-                strict=strict,
-            )
-            return rendered.pandoc_convert_text(output_format=output_format, **pandoc_kwargs)
-
-
-    ###################### Converting to Other Formats with Pandoc ######################
-    def pandoc_convert_text(self,
-        output_format: typing.Literal['html'],
-        template: typing.Optional[Path] = None,
-        extra_args: typing.Optional[list[str]] = None,
-        **kwargs
-    ) -> str:
-        '''Convert the markdown file to another template.
-            See this page for more about pandoc markdown:
-                https://quarto.org/docs/authoring/markdown-basics.html
+        '''Render the markdown document to a string using jinja/pandoc.
+        Args:
+            output_format: the format of the output file.
+            vars: the variables to substitute into the jinja template.
+            strict_render: if True, raise an error if not all variables are provided.
+            pandoc_args: the arguments for the pandoc conversion.
         '''
-        #extra_args = extra_args if extra_args is not None else []
-        extra_args = val_or_None(extra_args, [])
-        if template is not None:
-            extra_args.append(f'--template={template}')
-        
-        return pypandoc.convert_text(
-            source=self.md_text, 
-            to=output_format,
-            format='md',
-            extra_args=extra_args,
-            **kwargs
-        )
-    
-    def pandoc_convert_file(self,
-        output: Path,
-        output_format: typing.Optional[typing.Literal['html', 'pdf', 'docx']] = None,
-        template: typing.Optional[Path] = None,
-        extra_args: typing.Optional[list[str]] = None,
-        **kwargs
-    ) -> str | bytes:
-        '''Convert the markdown text to a file using pandoc.
-            See this page for more about pandoc markdown:
-                https://quarto.org/docs/authoring/markdown-basics.html
-        '''
-        output = Path(output)
 
-        #extra_args = extra_args if extra_args is not None else []
-        extra_args = val_or_None(extra_args, [])
-        if template is not None:
-            extra_args.append(f'--template={template}')
-        
         with tempfile.TemporaryDirectory() as tmp:
-            tmp_source_path = Path(f'{tmp}/source_input.md')
-            with tmp_source_path.open('w') as f:
-                f.write(self.md_text)
 
-            return pypandoc.convert_file(
-                source_file=str(tmp_source_path), 
-                to = val_or_None(output_format, output.suffix[1:]),
-                outputfile=str(output),
-                format='md',
-                extra_args=extra_args,
-                **kwargs,
+            # jinja render step
+            rendered = jinja_render(
+                input_text=self.md_text,
+                vars={
+                    **get_builtin_methods(tmp_dir=tmp, output_format=output_format), 
+                    **val_or_None(vars, {}),
+                }, 
+                strict=strict_render,
             )
 
-    ###################### Rendering with Jinja ######################
-    def jinja_render(self, 
+            # pandoc compile step
+            return pandoc_convert_text(
+                input_text=rendered,
+                input_format='md',
+                output_format=output_format, 
+                pandoc_args=pandoc_args,
+            )
+
+    ###################### templating ######################
+    def render_template(self,
         vars: dict[str,typing.Any],
-        strict: bool = True,
+        strict_render: bool = False,
     ) -> typing.Self:
-        '''Return the same document rendered as a jinja template.'''
-        try:
-            # NOTE: we won't always need this temp directory - it will be ignored if builtin
-            # methods are defined in the caller.
-            with tempfile.TemporaryDirectory() as tmp:
-                vars = {**get_builtin_methods(tmp_dir=tmp, output_format=None), **vars}
-                o = self.__class__(self.as_jinja_template().render(vars))
-        except jinja2.exceptions.TemplateSyntaxError as e:
-            if 'Missing end of comment tag' in e.message:
-                e.message = ('Missing end of comment tag, maybe due to '
-                    'issue with markdown classes. Be sure to use "{ #id" '
-                    'when specifying an ID using pandoc\'s marking tool '
-                )
-            raise self._add_line_number_to_exception_message(e)
-        
-        if strict and len(o.get_jinja_variables()):
-            raise ValueError(f'strict=True but not all jinja template variables '
-                f'have been provided: {o.get_jinja_variables()}')
-        return o
-    
-    def get_jinja_variables(self) -> list[str]:
-        '''Get list of jinja variables to populate.'''
-        env = self._get_jinja_environment()
-        try:
-            return jinja2.meta.find_undeclared_variables(env.parse(self.md_text))
-        except jinja2.exceptions.TemplateSyntaxError as e:
-            raise self._add_line_number_to_exception_message(e)
-
-    def as_jinja_template(self,
-        globals: dict[str, typing.Any] | None = None,
-    ) -> jinja2.Template:
-        '''Get a jinja template of the current document.'''
-        env = self._get_jinja_environment()
-        return env.from_string(
-            source = self.md_text,
-            globals = globals,
-        )
-    
-    @staticmethod
-    def _add_line_number_to_exception_message(
-        e: jinja2.exceptions.TemplateSyntaxError
-    ) -> jinja2.exceptions.TemplateSyntaxError:
-        '''Add line number to error message of TemplateSyntaxError.'''
-        if 'Missing end of comment tag' in e.message:
-            addendum = ('This may be due to lack of whitespace around curly '
-                'brackets in markdown classes. Use spacing such as "{ #id" '
-                'when specifying an ID using pandoc\'s marking tool. It may '
-                'otherwise be some other interaction between jinja and pandoc.'
+        '''Render the markdown document as a jinja template.'''
+        return self.from_str(
+            md_text=jinja_render(
+                input_text=self.md_text,
+                vars=vars,
+                strict=strict_render,
             )
-        else:
-            addendum = ''
-
-        return jinja2.exceptions.TemplateSyntaxError(
-            message=f'{e.message} on line {e.lineno}. {addendum}',
-            lineno=e.lineno,
-            name=e.name,
-            filename=e.filename,
         )
     
-    @staticmethod
-    def _get_jinja_environment(**environment_kwargs) -> jinja2.Environment:
-        '''Get environment for jinja. Consistency across the object.'''
-        return jinja2.Environment(**environment_kwargs)
-
-    
+    def get_template_variables(self) -> list[str]:
+        '''Get the variables in the jinja template.'''
+        return jinja_get_variables(self.md_text)

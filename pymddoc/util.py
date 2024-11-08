@@ -2,11 +2,15 @@ import typing
 import tempfile
 import pathlib
 
-def val_or_None(v: typing.Any, default: typing.Any):
+T = typing.TypeVar("T")
+U = typing.TypeVar("U")
+
+
+def val_or_None(v: T | None, default: T) -> T:
     '''Return v if it is not None, otherwise return default.'''
     return v if v is not None else default
 
-def map_or_None(v: typing.Any, f: typing.Callable[[typing.Any], typing.Any]):
+def map_or_None(v: T, f: typing.Callable[[T], U]) -> U:
     '''Apply f to v if v is not None, otherwise return None.'''
     return f(v) if v is not None else None
 
