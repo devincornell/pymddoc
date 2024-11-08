@@ -8,7 +8,7 @@ import jinja2
 import tempfile
 
 from .metadata import Metadata
-from .template_methods import get_builtin_methods
+from .builtin_methods import get_builtin_methods
 from .util import val_or_None
 
 @dataclasses.dataclass
