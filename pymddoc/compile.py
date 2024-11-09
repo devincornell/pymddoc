@@ -18,9 +18,6 @@ class PandocArgs:
         See this page for more about pandoc markdown:
             https://quarto.org/docs/authoring/markdown-basics.html
     Args:
-        input_text: the markdown text to convert.
-        input_format: the format of the input file.
-        output_format: the format of the output file.
         standalone: adds the --standalone flag to the pandoc command.
         embed_resources: adds the --embed-resources flag to the pandoc command.
         toc: adds the --toc flag to the pandoc command.
@@ -28,7 +25,7 @@ class PandocArgs:
             arguments to the pandoc command.
         template: adds the --template={fname} argument to the pandoc command.
         extra_args: additional arguments to add to the pandoc command.
-        **kwargs: passed to pandoc.
+        **pandoc_kwargs: passed to pandoc.
     '''
     standalone: bool = False
     embed_resources: bool = False

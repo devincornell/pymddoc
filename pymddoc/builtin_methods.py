@@ -14,14 +14,22 @@ def get_builtin_methods(
 ) -> dict[str,typing.Callable|str|None]:
     '''Return a dictionary of template methods.'''
     return {
-        'csv_to_markdown': csv_to_md,
-        'excel_to_markdown': excel_to_md,
+        'csv_to_markdown': csv_to_markdown,
+        'excel_to_markdown': excel_to_markdown,
         'svg_to_png': functools.partial(svg_to_png, tmp_dir),
         'pdf_to_png': functools.partial(pdf_to_png, tmp_dir),
         'HOME_DIR': str(pathlib.Path('~/').expanduser()),
         'OUTPUT_FORMAT': output_format,
     }
 
+
+def builtin_methods_str() -> str:
+    '''Return a string detailing the builtin methods.'''
+    output = ''
+    for vn,v in get_builtin_methods('', None).items():
+        if v.__doc__ is not None:
+            output += f'*{vn}*: {v.__doc__}\n'
+    return output
 
 
 def svg_to_png(tmpfolder: str, url: str, dpi: int = 300, **kwargs) -> str:
@@ -51,7 +59,7 @@ def pdf_to_png(tmpfolder: str, filename: str, pageno: int = 0, dpi: int = 300, *
     return outfile
 
 
-def csv_to_md(
+def csv_to_markdown(
     fname: str, 
     num_rows: int | None = None,
     read_kwargs: dict[str,typing.Any] | None = None, 
@@ -74,7 +82,7 @@ def csv_to_md(
     )
 
 
-def excel_to_md(
+def excel_to_markdown(
     fname: str, 
     num_rows: int | None = None,
     read_kwargs: dict[str,typing.Any] | None = None, 

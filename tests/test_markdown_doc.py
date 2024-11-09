@@ -44,6 +44,11 @@ def test_compile_basics():
         output_path='test_outputs/test_output.pdf', 
     )
 
+    doc.render_to_pdf(
+        output_path='test_outputs/test_output_toc.pdf', 
+        pandoc_args=pymddoc.PandocArgs(toc=True),
+    )
+
     doc.render_to_docx(
         output_path='test_outputs/test_output.docx', 
     )
