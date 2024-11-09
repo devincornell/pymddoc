@@ -54,7 +54,7 @@ class PandocArgs:
             extra_args.append('--toc')
 
         if self.citeproc_bibliography is not None:
-            extra_args += ['--citeproc', f'--bibliography {self.citeproc_bibliography}']
+            extra_args += ['--citeproc', '--bibliography', f'{self.citeproc_bibliography}']
 
         return extra_args, val_or_None(self.pandoc_kwargs, {})
 
