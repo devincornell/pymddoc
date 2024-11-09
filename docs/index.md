@@ -1,13 +1,26 @@
-# `pymddoc` Python Package
+# `PyMdDoc` Python Package
 
-`pymddoc` is a python package for creating markdown documents with embedded code snippets.
+This package integrates the features of [Pandoc](https://pandoc.org/) document conversion with the [Jinja](https://jinja.palletsprojects.com/en/stable/) templating engine to create a powerful interface for creating documents using Markdown. Aside from the features of these powerful tools, the package also includes custom functions to accellerate your writing workflow.
 
-See the introduction and documentation for details on getting started.
++ Custom `PyMdDoc` functions usable with Jinja
+    + Insert tables directly from CSV or Excel files.
+    + Convert SVG or PDF files to PNG for compilation.
 
-## Installation
++ [Jinja](https://jinja.palletsprojects.com/en/stable/) templating engine
+    + Add comments
+    + Provide and call custom functions
+    + Use conditionals, loops and other control structures
 
-`pymddoc` is not available on PyPI, but can be installed with pip directly from the github repository.
++ [Pandoc](https://pandoc.org/) document converter
+    + Extract and modify YAML header metadata
+    + Code snippet supports
+    + Citations from bibtex files using Citeproc
+    + Specify id, class, and other html elements
 
-```
+
+#### Installation
+You can install the latest version of `PyMdDoc` using pip:
+
+```bash
 pip install git+ssh://git@github.com/devincornell/pymddoc.git@main
 ```
