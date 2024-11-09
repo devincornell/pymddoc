@@ -17,7 +17,7 @@ from .compile import pandoc_convert_text, pandoc_convert_file, PandocArgs
 
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(repr=False)
 class MarkdownDoc:
     '''Used to manipulate markdown data using pypandoc.'''
     md_text: str
@@ -178,3 +178,7 @@ class MarkdownDoc:
     def get_template_variables(self) -> list[str]:
         '''Get the variables in the jinja template.'''
         return jinja_get_variables(self.md_text)
+
+    ###################### dunder ######################
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}({self.extract_metadata()})'
