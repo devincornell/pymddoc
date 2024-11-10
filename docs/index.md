@@ -1,8 +1,10 @@
 # `PyMdDoc` Python Package
 
-This package integrates the features of [Pandoc](https://pandoc.org/) document conversion with the [Jinja](https://jinja.palletsprojects.com/en/stable/) templating engine to create a powerful interface for creating documents using Markdown. Aside from the features of these powerful tools, the package also includes custom functions to accellerate your writing workflow.
+This package offers a powerful interface for compiling markdown documents to a number of other formats using a combination of [Pandoc](https://pandoc.org/) document conversion and the [Jinja](https://jinja.palletsprojects.com/en/stable/) templating engine with custom functions that can be used to insert tables from CSV or Excel files, insert SVG or PDF images directly, and offer conditional logic for compiling to different document formats.
 
-+ Custom `PyMdDoc` functions usable with Jinja
+The combination of these three elements offer the following features:
+
++ Custom `PyMdDoc` functions usable from Jinja
     + Insert tables directly from CSV or Excel files.
     + Convert SVG or PDF files to PNG for compilation.
 
