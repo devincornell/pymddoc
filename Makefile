@@ -15,7 +15,7 @@ install:
 ################## DOCS ##################
 REQUIREMENTS_FOLDER = ./requirements/
 EXAMPLE_NOTEBOOK_FOLDER = ./examples/# this is where example notebooks are stored
-EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER = ./docs/documentation/# this is where example notebooks are stored
+DOCS_FOLDER = ./docs/
 
 docs: readme requirements compile_examples mkdocs
 	@echo "docs built"
@@ -36,16 +36,20 @@ build_mkdocs:
 readme:
 	python README.py
 
+.PHONY: requirements
+
 requirements:
-	-mkdir $(REQUIREMENTS_FOLDER)
 	pip freeze > $(REQUIREMENTS_FOLDER)/requirements.txt	
 	pip list > $(REQUIREMENTS_FOLDER)/packages.txt
+	-pip install pipreqs
+	pipreqs --force $(PACKAGE_NAME)/ --savepath $(REQUIREMENTS_FOLDER)/used_packages.txt
+
 
 compile_examples:
-	-mkdir $(EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER)
 	-jupyter nbconvert --to markdown $(EXAMPLE_NOTEBOOK_FOLDER)/*.ipynb
-	-mv $(EXAMPLE_NOTEBOOK_FOLDER)/*.md $(EXAMPLE_NOTEBOOK_MARKDOWN_FOLDER)
+	-mv $(EXAMPLE_NOTEBOOK_FOLDER)/*.md $(DOCS_FOLDER)
 
+test_example_py_scripts:
 	cd $(EXAMPLE_NOTEBOOK_FOLDER); \
 		for FILE in *.py; do \
 			echo "testing $$FILE"; \
@@ -74,6 +78,6 @@ test:
 	cd tests; pytest *.py
 
 mypy:
-	python -m mypy pymddoc --python-version=3.11
+	python -m mypy $(PACKAGE_NAME) --python-version=3.11
 
 
