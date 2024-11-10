@@ -28,16 +28,21 @@ pip install git+ssh://git@github.com/devincornell/pymddoc.git@main
 ```
 
 
-## Overview
+## Python API Overview
 
 The process of compiling your markdown document involves several steps.
 
 1. Author the markdown document.
 2. Read the markdown from a file or string.
 3. Use a compile function from within `pymddoc`.
+
     a. First, render the markdown with Jinja.
+
     b. Then, compile the markdown with Pandoc.
-4. Save the compiled document to a file or a string (in the case of html).
+    
+
+
+### 1. Create the Markdown Document
 
 First, create a markdown document with the document content and links to images.
 
@@ -105,5 +110,79 @@ First, create a markdown document with the document content and links to images.
 
 ```
 
-That's all folks!
+### 2. Read the Markdown Document
 
+Next read the file into the `MarkdownDoc` object. You load it as a file or a string.
+
+```python
+doc = pymddoc.MarkdownDoc.from_str('file.md')
+```
+
+This is the string version:
+
+```python
+doc = pymddoc.MarkdownDoc.from_str('this is a markdown string!')
+```
+
+You can extract metadata as a dict using the following function:
+
+```python
+doc.extract_metadata()
+```
+
+### 3. Compile the Markdown Document
+
+Next, render the file to the desired format. This will render the Jinja templates and functions.
+
+The HTML can be output as a string or a file. Use this function to render the markdown to a string:
+
+```python
+html = doc.render_to_string('html')
+```
+
+As a shortcut, you can use the `render_html` function.
+
+```python
+html = doc.render_html()
+```
+
+When compiling pdf or docx files, you can use the `render_to_file` function. It will automatically infer output format from the file extension.
+
+```python
+doc.render_to_file('output.pdf')
+```
+
+Same goes for compiling to docx.
+
+```python
+doc.render_to_file('output.docx')
+```
+
+Same goes for compiling to docx.
+
+```python
+doc.render_to_file('output.docx')
+```
+
+You can also call type-specific functions for rendering to specific formats.
+
+```python
+doc.render_to_docx('output.docx')
+doc.render_to_pdf('output.pdf')
+```
+
+You can use the `vars` arugment to pass variables to the Jinja template, and pass a `PandocArgs` object to the render functions to have more control over the Pandoc conversion.
+
+```python
+doc.render_to_pdf(
+    output_path=f'output.pdf',
+    vars={'text_here': 'Hello, world!'},
+    pandoc_args = pymddoc.PandocArgs(
+        toc = True,
+        embed_resources=True,
+        extra_args=['--mathjax'],
+    )
+)
+```
+
+See the Python API Documentation for more information!

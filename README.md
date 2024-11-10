@@ -22,94 +22,179 @@ The combination of these three elements offer the following features:
     + Specify id, class, and other html elements
 
 
-# Planned Features
+## Planned Features
 
-+ [ ] metadata editing
-+ [ ] excellent support code snippets
++ [ ] Edit metdata dynamically
++ [ ] Excecute and insert code snippets with stdout
 + [x] read and convert tables to markdown
 + [x] read pdf files for pdf/docx conversion
-+ [x] support for svg images
-+ [x] comments (supported through jinja)
-+ [x] bibtex/citations
++ [x] Embed pdf/svg images
++ [x] Create comments (already supported through jinja)
++ [x] Control over bibtex/citations with citeproc
+
+## Installation
+You can install the latest version of `PyMdDoc` using pip:
+
+```bash
+pip install git+ssh://git@github.com/devincornell/pymddoc.git@main
+```
 
 
-## Jinja and Pandoc
+## Python API Overview
 
-This package integrates `Pandoc` document conversion with the Jinja templating engine to create a powerful and interface for compiling markdown documents to a number of other formats.
+The process of compiling your markdown document involves several steps.
 
-The general idea is that you can draw up new ideas while not caring what happens.
+1. Author the markdown document.
+2. Read the markdown from a file or string.
+3. Use a compile function from within `pymddoc`.
 
+    a. First, render the markdown with Jinja.
 
-### Jinja Templating Syntax
-
-{# this is a comment with jinja! It will not be shown to pandoc. #}
-
-
-
-
-## Citations
-
-Pro tip: see the [pandoc citer](https://marketplace.visualstudio.com/items?itemName=notZaki.pandocciter) VSCode plugin for citation auto-complete.
-
-You can insert citations like this  [@Welch2006; @Pedersen2008]. Cite direct references to authors using the following syntax: Pedersen et al. [-@Pedersen2008] noted that eigenvectors are the best way to determine the principal components.
+    b. Then, compile the markdown with Pandoc.
+    
 
 
-::: {.warning}
-This is the last warning!
-:::
+### 1. Create the Markdown Document
+
+First, create a markdown document with the document content and links to images.
+
+```markdown
+    ---
+    title: Example Markdown
+    author: John Doe
+    date: 2021-01-01
+    bibliography: ["data/references.bib"]
+    ---
+
+    ## Supported by Jinja
+
+    {# this is a Jinja comment #}
+
+    The `OUTPUT_FORMAT` variable allows you to write output format-specific content.
+
+    {% if OUTPUT_FORMAT == 'html' %}
+    This is an HTML document.
+    {% else %}
+    This is not an HTML document.
+    {% endif %}
+
+
+    ## Custom `PyMdDoc` Functions
+
+    ### Insert Tables from CSV or Excel Files
+
+    These built-in functions will accomplish this.
+
+    {{csv_to_markdown('data/testtable.csv')}}
+
+    {{excel_to_markdown('data/testtable.xlsx')}}
+
+
+    ### Insert SVG or PDF Images
+
+    {{svg_to_png('data/testimage.svg')}}
+
+    {{pdf_to_png('data/testimage.pdf')}}
+
+
+    ## Pandoc Compilation
+
+    Any pandoc features are allowed.
+
+    ### Citations
+
+    Use citations like this [@Angelou1969] or this [-@Cohen1963]. The bib file is provided in the compile function.
+
+    ### Code Snippets
+
+    You can also use code snippets:
+
+        ```python
+        def example_function():
+            return "Hello, world!"
+        ```
+
+    ### Custom HTML
+
+    ::: { #favorite .note font-size="1.5em" }
+    You can also create Div blocks with ids, classes, and other attributes.
+    :::
+
+```
+
+### 2. Read the Markdown Document
+
+Next read the file into the `MarkdownDoc` object. You load it as a file or a string.
 
 ```python
-def main():
-    print(f'Why the heck would you go there?')
+doc = pymddoc.MarkdownDoc.from_str('file.md')
 ```
 
-{# embed the pdf as a png #}
+This is the string version:
 
-![]({{svg_to_png("https://storage.googleapis.com/public_data_09324832787/static_factory_methods.svg")}}){ #hello .myclass size="80%" }
-
-
-{# embed the pdf as a png #}
-
-![]({{pdf_to_png("data/hist_rt_comparison.pdf")}}){ .myclass size="80%" }
-
-{# embed the pdf directly #}
-![](data/hist_rt_comparison.pdf){ .myclass size="80%" }
-
-
-::: {.classname}
-{{ csv_to_markdown('data/testtable.csv') }}
-:::
-
-{# this is a comment! #}
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Inserting Tables
-
-You can insert tables into the markdown document using the builtin jinja function `csv_to_markdown`. This function will read the referenced CSV file and convert it to markdown format using pandas so it can be inserted directly in the document before compilation.
-
-```markdown
-{{ csv_to_markdown('data/testtable.csv') }}
+```python
+doc = pymddoc.MarkdownDoc.from_str('this is a markdown string!')
 ```
 
-## SVG Images
+You can extract metadata as a dict using the following function:
 
-The pandoc PDF compiler does not have native support for SVG images, but you can use the builtin jinja function `svg_to_png` to convert local or remote svg images to png for compilation. The function will download the image (if it is remote) and convert it to a png file in a temporary directory. The function returns the path to that temporary file, which can be referenced directly in the markdown document..
-
-```markdown
-![Alt text.]({{svg_to_png("https://storage.googleapis.com/public_data_09324832787/static_factory_methods.svg")}}){ #hello .myclass size="80%" }
+```python
+doc.extract_metadata()
 ```
 
-## PDF Images
+### 3. Compile the Markdown Document
 
+Next, render the file to the desired format. This will render the Jinja templates and functions.
 
+The HTML can be output as a string or a file. Use this function to render the markdown to a string:
+
+```python
+html = doc.render_to_string('html')
+```
+
+As a shortcut, you can use the `render_html` function.
+
+```python
+html = doc.render_html()
+```
+
+When compiling pdf or docx files, you can use the `render_to_file` function. It will automatically infer output format from the file extension.
+
+```python
+doc.render_to_file('output.pdf')
+```
+
+Same goes for compiling to docx.
+
+```python
+doc.render_to_file('output.docx')
+```
+
+Same goes for compiling to docx.
+
+```python
+doc.render_to_file('output.docx')
+```
+
+You can also call type-specific functions for rendering to specific formats.
+
+```python
+doc.render_to_docx('output.docx')
+doc.render_to_pdf('output.pdf')
+```
+
+You can use the `vars` arugment to pass variables to the Jinja template, and pass a `PandocArgs` object to the render functions to have more control over the Pandoc conversion.
+
+```python
+doc.render_to_pdf(
+    output_path=f'output.pdf',
+    vars={'text_here': 'Hello, world!'},
+    pandoc_args = pymddoc.PandocArgs(
+        toc = True,
+        embed_resources=True,
+        extra_args=['--mathjax'],
+    )
+)
+```
+
+See the Python API Documentation for more information!

@@ -11,23 +11,17 @@ sys.path.append('..')
 import pymddoc
 ```
 
+I will use this functions to make html outputs more readable.
+
 
 ```python
-# I will use this to make output html more readable.
 def print_formatted_html(html_string):
+    '''Print HTML that is formatted with indentation.'''
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(html_string, 'html.parser')
     clean_html = soup.prettify()
     print(clean_html)
-
-from IPython.core.display import display, HTML
-def display_html(html_string):
-    display(HTML(html_string))
 ```
-
-    /tmp/ipykernel_885583/2382866047.py:8: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
-      from IPython.core.display import display, HTML
-
 
 ### Ingest Markdown Documents
 
@@ -55,9 +49,10 @@ You can also create Div blocks with ids, attributes, and other attributes.
 You can also use code snippets:
 
 ```python
-def example_function():
-    return "Hello, world!"
-```
+    def example_function():
+        return "Hello, world!"
+```.
+<br/>
 '''.strip()
 
 doc = pymddoc.MarkdownDoc.from_str(example_markdown)
@@ -91,7 +86,6 @@ You can use the method `render_to_string()` to convert the document to any text-
 ```python
 html = doc.render_to_string('html')
 print_formatted_html(html)
-display_html(html)
 ```
 
     <h1 id="header-1">
@@ -109,25 +103,14 @@ display_html(html)
     <p>
      You can also use code snippets:
     </p>
-    <div class="sourceCode" id="cb1">
-     <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="kw">def</span> example_function():</span>
-    <span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Hello, world!"</span></span></code></pre>
-    </div>
+    <p>
+     <code>
+      python     def example_function():         return "Hello, world!"
+     </code>
+     .
+     <br/>
+    </p>
     
-
-
-
-<h1 id="header-1">Header 1</h1>
-<p>You can use italics and bold text as supported by pandoc.</p>
-<div id="favorite" class="note" data-font-size="1.5em">
-<p>You can also create Div blocks with ids, attributes, and other
-attributes.</p>
-</div>
-<p>You can also use code snippets:</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> example_function():</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;Hello, world!&quot;</span></span></code></pre></div>
-
 
 
 To convert to pdf or docx formats, you will want to write to a file. In this case, you can use the `render_to_file()` method. It can automatically infer the file type using the file extension.
@@ -167,10 +150,13 @@ print_formatted_html(html)
     <p>
      You can also use code snippets:
     </p>
-    <div class="sourceCode" id="cb1">
-     <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="kw">def</span> example_function():</span>
-    <span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Hello, world!"</span></span></code></pre>
-    </div>
+    <p>
+     <code>
+      python     def example_function():         return "Hello, world!"
+     </code>
+     .
+     <br/>
+    </p>
     
 
 
