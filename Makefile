@@ -8,8 +8,14 @@ reinstall: uninstall install
 uninstall:
 	pip uninstall -y $(PACKAGE_NAME)
 
-install:
+install: clean
 	pip install .
+
+clean:
+	rm -rf dist
+	rm -rf build
+	rm -rf *.egg-info
+	rm -rf src/*.egg-info
 
 
 ################## DOCS ##################
@@ -21,7 +27,7 @@ docs: readme requirements compile_examples mkdocs
 	@echo "docs built"
 
 serve_mkdocs: build_mkdocs
-	mkdocs serve -a localhost:8882
+	mkdocs serve -a localhost:8883
 
 mkdocs: build_mkdocs deploy_mkdocs
 	# mkdocs build

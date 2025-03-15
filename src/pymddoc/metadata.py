@@ -6,6 +6,8 @@ import pypandoc
 from pathlib import Path
 import json
 
+from .util import pandoc_execute
+
 class Metadata(dict[str,str|int|bool|float]):
     '''Store and manage document metadata. dict subtype.'''
 
@@ -19,9 +21,10 @@ class Metadata(dict[str,str|int|bool|float]):
             # write the template text to a file
             with tmp_template_path.open('w') as f:
                 f.write('$meta-json$')
-            
+
             # run conversion to the template
-            converted = pypandoc.convert_text(
+            converted = pandoc_execute(
+                pypandoc.convert_text,
                 str(markdown_text), 
                 to='html',
                 format='md',

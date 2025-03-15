@@ -7,7 +7,7 @@ import json
 import jinja2
 import tempfile
 
-from .util import val_or_None, map_or_None
+from .util import val_or_None, map_or_None, pandoc_execute
 
 InputFormat = typing.Literal['md', 'markdown']
 RenderFormat = typing.Literal['html', 'pdf', 'docx']
@@ -79,7 +79,8 @@ def pandoc_convert_text(
     pandoc_args = val_or_None(pandoc_args, PandocArgs())
     extra_args, kwargs = pandoc_args.to_list()
 
-    return pypandoc.convert_text(
+    return pandoc_execute(
+        pypandoc.convert_text,
         source=input_text, 
         to=output_format,
         format=input_format,
@@ -110,7 +111,8 @@ def pandoc_convert_file(
     pandoc_args = val_or_None(pandoc_args, PandocArgs())
     extra_args, kwargs = pandoc_args.to_list()
 
-    return pypandoc.convert_file(
+    return pandoc_execute(
+        pypandoc.convert_file,
         source_file=str(input_path), 
         to = val_or_None(output_format, output_path.suffix[1:]),
         format=input_format,
