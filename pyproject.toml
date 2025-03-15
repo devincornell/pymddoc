@@ -16,9 +16,18 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "CairoSVG>=2.7.1",
+    "click>=8.0.4",
+    "fitz>=0.0.1.dev2",
+    "Jinja2>=3.1.2",
+    "pandas>=2.2.3",
+    "pypandoc==1.14",
+    "python_dateutil>=2.8.2"
+]
 
 [project.urls]
 Homepage = "https://devinjcornell.com/pymddoc"
 
 [tool.setuptools.package-data]
-pymddoc = ["templates/default_ipynb_to_md_template.md"]
+pymddoc = ["templates/default_ipynb_to_md_template.md"]√
