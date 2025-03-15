@@ -52,9 +52,7 @@ def ipynb2md(ipynb_file: str, md_file: str, template: str) -> None:
 @click.argument('ipynb_files', nargs=-1, type=click.Path(exists=True))
 @click.option("--template", type=click.Path(exists=True), default=None)
 def ipynb2md_multi(ipynb_files: list[str], template: str) -> None:
-    '''Convert a Jupyter notebook (json file) to a markdown file.
-    Description: reads a jupyter notebook as a regular json file, passes the json to the template,
-        and renders the template with the json information.
+    '''Convert multiple Jupyter notebooks (json files) to markdown files.
     '''
     for ipynb_file in ipynb_files:
         with Path(ipynb_file).open('r') as f:

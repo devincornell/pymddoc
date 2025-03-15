@@ -2,6 +2,13 @@ from .snippet import SnippetCtx, SnippetFormatter, SnippetTemplateType, SnippetI
 
 from .depricated import Document, DocMaker
 
+from .notebooks import (
+    convert_ipynb2md, 
+)
+from .templates import (
+    templates, 
+    ipynb2md_default_template
+)
 
 from .markdown_doc import MarkdownDoc
 from .metadata import Metadata
