@@ -30,4 +30,4 @@ dependencies = [
 Homepage = "https://devinjcornell.com/pymddoc"
 
 [tool.setuptools.package-data]
-pymddoc = ["templates/default_ipynb_to_md_template.md"]√
+pymddoc = ["templates/default_ipynb_to_md_template.md"]
