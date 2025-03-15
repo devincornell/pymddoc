@@ -1,4 +1,4 @@
-# `PyMdDoc` Python Package
+# Introduction
 
 This package offers a powerful interface for compiling markdown documents to a number of other formats using a combination of [Pandoc](https://pandoc.org/) document conversion and the [Jinja](https://jinja.palletsprojects.com/en/stable/) templating engine with custom functions that can be used to insert tables from CSV or Excel files, insert SVG or PDF images directly, and offer conditional logic for compiling to different document formats.
 
@@ -24,9 +24,36 @@ The combination of these three elements offer the following features:
 You can install the latest version of `PyMdDoc` using pip:
 
 ```bash
-pip install git+ssh://git@github.com/devincornell/pymddoc.git@main
+pip install git+https://github.com/devincornell/pymddoc.git@main
 ```
 
+
+## Command-line Interface Overview
+
+There are two main commands available in the command-line interface: `metadata` and `render`.
+
+To extract metdata from the markdown YAML header, use the `metadata` command.
+
+```bash
+python -m pymddoc metadata file.md
+```
+
+Use the `render` command to render the markdown using jinja and then compile using pandoc. This is great when you aren't planning to do anything exceptional with the markdown.
+
+```bash 
+python -m pymddoc render --help
+```
+
+```
+Usage: python -m pymddoc render [OPTIONS] MD_FILE OUT_FILE
+
+  Render and compile a markdown file.
+
+Options:
+  --out_format [html|pdf|docx]
+  --strict_render BOOLEAN
+  --help                        Show this message and exit.
+```
 
 ## Python API Overview
 

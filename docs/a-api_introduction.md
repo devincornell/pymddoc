@@ -1,3 +1,6 @@
+
+
+
 # API Introduction
 
 This page describes the API of the `PyMdDoc` package.
@@ -5,16 +8,30 @@ This page describes the API of the `PyMdDoc` package.
 The `MarkdownDoc` class maintains the main interface for creating documents. It manages a single markdown document which can be rendered and converted to another document type. It can be created from a string using `from_str()` or a file using `from_file()`.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 import sys
 sys.path.append('..')
 import pymddoc
 ```
 
+
+---
+
+
+
+
 I will use this functions to make html outputs more readable.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 def print_formatted_html(html_string):
     '''Print HTML that is formatted with indentation.'''
     from bs4 import BeautifulSoup
@@ -23,12 +40,22 @@ def print_formatted_html(html_string):
     print(clean_html)
 ```
 
+
+---
+
+
+
+
 ### Ingest Markdown Documents
 
 The following example demonstrates how to create a simple markdown document.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 example_markdown = '''
 ---
 title: Example Markdown
@@ -59,20 +86,52 @@ doc = pymddoc.MarkdownDoc.from_str(example_markdown)
 print(doc)
 ```
 
+
+
+stdout:
+ 
+
     MarkdownDoc({'author': 'John Doe', 'date': '2021-01-01', 'title': 'Example Markdown'})
+    
+
+ 
+
+
+
+---
+
+
 
 
 You can extract the YAML header metadata from the document using the `extract_metadata()` method. This method returns a dictionary of the metadata from the document.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 doc.extract_metadata()
 ```
 
 
 
 
+text:
+
     {'author': 'John Doe', 'date': '2021-01-01', 'title': 'Example Markdown'}
+ 
+
+
+ 
+
+
+ 
+
+
+
+---
+
 
 
 
@@ -83,10 +142,19 @@ There are several different methods for rendering markdown documents to other do
 You can use the method `render_to_string()` to convert the document to any text-based format.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 html = doc.render_to_string('html')
 print_formatted_html(html)
 ```
+
+
+
+stdout:
+ 
 
     <h1 id="header-1">
      Header 1
@@ -111,22 +179,45 @@ print_formatted_html(html)
      <br/>
     </p>
     
+    
+
+ 
+
+
+
+---
+
+
 
 
 To convert to pdf or docx formats, you will want to write to a file. In this case, you can use the `render_to_file()` method. It can automatically infer the file type using the file extension.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 import tempfile
 with tempfile.TemporaryDirectory() as tempdir:
 
     doc.render_to_file(f'{tempdir}/test.pdf')
 ```
 
+
+---
+
+
+
+
 There are also some type-specific methods for rendering html, pdf, or docx files.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 with tempfile.TemporaryDirectory() as tempdir:
     
     doc.render_to_pdf(f'{tempdir}/test.pdf')
@@ -135,6 +226,11 @@ with tempfile.TemporaryDirectory() as tempdir:
 print_formatted_html(html)
 ```
 
+
+
+stdout:
+ 
+
     <h1 id="header-1">
      Header 1
     </h1>
@@ -158,28 +254,59 @@ print_formatted_html(html)
      <br/>
     </p>
     
+    
+
+ 
+
+
+
+---
+
+
 
 
 ### Jinja Templating Features
 You can pass variables to be inserted in the markdown document using Jinja templating with the `vars` argument to most render functions.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 d = pymddoc.MarkdownDoc.from_str('{{ text_here }}')
 html = d.render_html(vars={'text_here': 'Hello, world!'})
 print_formatted_html(html)
 ```
 
+
+
+stdout:
+ 
+
     <p>
      Hello, world!
     </p>
     
+    
+
+ 
+
+
+
+---
+
+
 
 
 While Pandoc supports a number of output formats, it is necessarily inconsistent in how it renders various elements of the document. Using the `OUTPUT_FORMAT` constant available through `PyMdDoc`, you can conditionally render elements based on the output format. 
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 example_markdown = '''
 {% if OUTPUT_FORMAT == 'html' %}
 This is an HTML document.
@@ -192,8 +319,22 @@ doc = pymddoc.MarkdownDoc.from_str(example_markdown)
 print(doc.render_html())
 ```
 
+
+
+stdout:
+ 
+
     <p>This is an HTML document.</p>
     
+    
+
+ 
+
+
+
+---
+
+
 
 
 ### Pandoc Arguments
@@ -202,9 +343,18 @@ You can use the `pandoc_args` argument to pass additional arguments to the pando
 Pass arguments using the `PandocArgs` dataclass. The docstring of that class contains a list of all the available arguments.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 print(pymddoc.PandocArgs.__doc__)
 ```
+
+
+
+stdout:
+ 
 
     Dataclass that contains arguments for pandoc conversion.
             See this page for more about pandoc markdown:
@@ -219,12 +369,25 @@ print(pymddoc.PandocArgs.__doc__)
             extra_args: additional arguments to add to the pandoc command.
             **pandoc_kwargs: passed to pandoc.
         
+    
+
+ 
+
+
+
+---
+
+
 
 
 And you can pass it as an argument to any render function.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 with tempfile.TemporaryDirectory() as tempdir:
 
     doc.render_to_pdf(
@@ -237,4 +400,12 @@ with tempfile.TemporaryDirectory() as tempdir:
     )
 ```
 
+
+---
+
+
+
+
 See other pages for examples of using custom functions within the markdown document.
+
+ 

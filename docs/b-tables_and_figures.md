@@ -1,3 +1,6 @@
+
+
+
 # Inserting Table and Figure Data
 
 Translating results of analyses to tables and figures in documents often involves multiple steps, and this package provides some functionality to streamline that process. This functionality is provided through functions that the Jinja templating engine has access to.
@@ -6,13 +9,23 @@ Translating results of analyses to tables and figures in documents often involve
 + Convert Vector graphic files to PNG format for inclusion in the document.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 import sys
 sys.path.append('..')
 import pymddoc
 
 import tempfile
 ```
+
+
+---
+
+
+
 
 ## Useful Constants
 First, it is worth mentioning some defined constants that can be helpful for composing documents. Use them as you would any other Jinja variable.
@@ -21,7 +34,11 @@ First, it is worth mentioning some defined constants that can be helpful for com
 + **HOME_DIR**: the home directory of the computer where you're rendering the document.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 example_markdown = '''
 Document format: {{OUTPUT_FORMAT}}
 
@@ -32,15 +49,33 @@ doc = pymddoc.MarkdownDoc.from_str(example_markdown)
 print(doc.render_html())
 ```
 
+
+
+stdout:
+ 
+
     <p>Document format: html</p>
     <p>Home directory: /home/devin</p>
     
+    
+
+ 
+
+
+
+---
+
+
 
 
 While Pandoc supports a number of output formats, it is necessarily inconsistent in how it renders various elements of the document. Using the `OUTPUT_FORMAT` constant, you can conditionally render elements based on the output format. 
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 example_markdown = '''
 {% if OUTPUT_FORMAT == 'html' %}
 This is an HTML document.
@@ -53,8 +88,22 @@ doc = pymddoc.MarkdownDoc.from_str(example_markdown)
 print(doc.render_html())
 ```
 
+
+
+stdout:
+ 
+
     <p>This is an HTML document.</p>
     
+    
+
+ 
+
+
+
+---
+
+
 
 
 ## Insert Tables
@@ -62,9 +111,18 @@ print(doc.render_html())
 There are two methods for inserting tables into your documents: `csv_to_markdown` and `excel_to_markdown`. Both methods read a file from disk and insert it into the document as markdown.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 print(pymddoc.excel_to_markdown.__doc__)
 ```
+
+
+
+stdout:
+ 
 
     Read an excel file from disk and insert it into the document as markdown.
         Args:
@@ -74,12 +132,28 @@ print(pymddoc.excel_to_markdown.__doc__)
                 function.
             to_markdown_kwargs: dict[str,typing.Any] | None: The keyword arguments to pass to the
         
+    
+
+ 
 
 
 
-```python
+---
+
+
+
+
+
+---
+
+``` python linenums="1"
 print(pymddoc.csv_to_markdown.__doc__)
 ```
+
+
+
+stdout:
+ 
 
     Read a csv file from disk and insert it into the document as markdown.
         Args:
@@ -89,12 +163,25 @@ print(pymddoc.csv_to_markdown.__doc__)
                 function.
             to_markdown_kwargs: dict[str,typing.Any] | None: The keyword arguments to pass to the
         
+    
+
+ 
+
+
+
+---
+
+
 
 
 Call them from within the markdown document.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 example_markdown = '''
 {{csv_to_markdown('../tests/test_data/testtable.csv', num_rows=2)}}
 '''.strip()
@@ -102,6 +189,11 @@ example_markdown = '''
 doc = pymddoc.MarkdownDoc.from_str(example_markdown)
 print(doc.render_html())
 ```
+
+
+
+stdout:
+ 
 
     <table>
     <thead>
@@ -122,15 +214,33 @@ print(doc.render_html())
     </tbody>
     </table>
     
+    
+
+ 
+
+
+
+---
+
+
 
 
 ## Embed Vector Graphics
 While it is possible to embed vector graphic types such as SVG and PDF into documents using additional software, the following built-in methods will convert these file types to PNG and embed them directly into the document when it is rendered. This is ideal for cases where you want to embed outputs from analyses for publication, and it is all controlled within the markdown document - even the DPI of the output image.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 print(pymddoc.svg_to_png.__doc__)
 ```
+
+
+
+stdout:
+ 
 
     Convert an svg file to a png file stored in /tmp for pandoc compilation.
         Args:
@@ -138,12 +248,28 @@ print(pymddoc.svg_to_png.__doc__)
             dpi: int: The dpi of the output image.
             kwargs: dict: Additional keyword arguments to pass to cairosvg.svg2png().
         
+    
+
+ 
 
 
 
-```python
+---
+
+
+
+
+
+---
+
+``` python linenums="1"
 print(pymddoc.pdf_to_png.__doc__)
 ```
+
+
+
+stdout:
+ 
 
     Convert a pdf file to a png file stored in /tmp for pandoc compilation.
         Args:
@@ -152,12 +278,25 @@ print(pymddoc.pdf_to_png.__doc__)
             dpi: int: The dpi of the output image.
             kwargs: dict: Additional keyword arguments to pass to page.get_pixmap().
         
+    
+
+ 
+
+
+
+---
+
+
 
 
 Call them from within the markdown document.
 
 
-```python
+
+
+---
+
+``` python linenums="1"
 example_markdown = '''
 {# embed the pdf as a png. This one is on the web. #}
 ![]({{svg_to_png("https://storage.googleapis.com/public_data_09324832787/static_factory_methods.svg", dpi=150)}})
@@ -174,3 +313,9 @@ doc = pymddoc.MarkdownDoc.from_str(example_markdown)
 with tempfile.TemporaryDirectory() as tmpdirname:
     doc.render_to_pdf(f'{tmpdirname}/output.pdf')
 ```
+
+
+---
+
+
+ 

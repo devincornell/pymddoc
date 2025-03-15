@@ -1,4 +1,4 @@
-site_name: PyMdDoc
+site_name: PyMdDoc Python Package
 theme:
   name: material
   icon:
