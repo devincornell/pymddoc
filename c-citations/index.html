@@ -12,7 +12,7 @@
         <link rel="prev" href="../b-tables_and_figures/">
       
       
-        <link rel="next" href="../depricated/z-intro/">
+        <link rel="next" href="../d-ipynb2md/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Citations and Bibliography - PyMdDoc</title>
+        <title>Citations and Bibliography - PyMdDoc Python Package</title>
       
     
     
@@ -81,7 +81,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="PyMdDoc" class="md-header__button md-logo" aria-label="PyMdDoc" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-header__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -95,7 +95,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            PyMdDoc
+            PyMdDoc Python Package
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -185,13 +185,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="PyMdDoc" class="md-nav__button md-logo" aria-label="PyMdDoc" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-nav__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    PyMdDoc
+    PyMdDoc Python Package
   </label>
   
     <div class="md-nav__source">
@@ -218,7 +218,26 @@
         
   
   <span class="md-ellipsis">
-    PyMdDoc Python Package
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Command-line Interface
   </span>
   
 
@@ -347,60 +366,16 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Depricated
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            Depricated
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../depricated/z-intro/" class="md-nav__link">
+      <a href="../d-ipynb2md/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Depricated Introduction
+    Jupyter notebooks to Markdown
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -470,87 +445,148 @@
 <h1 id="citations-and-bibliography">Citations and Bibliography</h1>
 <p>Part of the motivation for using <code>Pandoc</code> for this package was that it supports citations and bibliographies through citeproc. Given a markdown document with citations in it and a <code>.bib</code> file, <code>Pandoc</code> can generate a formatted document with citations and a bibliography.</p>
 <p>This package maintains some easy-to-use functions for working with citations and bibliographies in markdown documents.</p>
-<pre><code class="language-python"># for demonstration
-import tempfile
-from IPython.core.display import display, HTML
-
-import sys
-sys.path.append('..')
-import pymddoc
-</code></pre>
-<pre><code>/tmp/ipykernel_889889/3729719973.py:3: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># for demonstration</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">tempfile</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kn">import</span> <span class="nn">sys</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="kn">import</span> <span class="nn">pymddoc</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stderr:</p>
+<div class="language-text highlight"><pre><span></span><code>/tmp/ipykernel_1016843/3729719973.py:3: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
   from IPython.core.display import display, HTML
-</code></pre>
+</code></pre></div>
+<hr />
 <h3 id="citation-auto-complete">Citation Auto-complete</h3>
 <p>Check out the <a href="https://marketplace.visualstudio.com/items?itemName=notZaki.pandocciter">pandoc citer</a> VSCode plugin for citation auto-complete as you edit your documents.</p>
 <p>In the document YAML header, you will need to provide the bibliography attribute.</p>
-<pre><code class="language-python">markdown_text = '''
----
-title: &quot;Hello World&quot;
-bibliography: [&quot;data/references.bib&quot;]
----
-Use citations like this [@Angelou1969] or this [-@Cohen1963]. These will auto-complete if you use the VSCode plugin.
-'''.strip()
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">markdown_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="s1">---</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="s1">title: &quot;Hello World&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="s1">bibliography: [&quot;data/references.bib&quot;]</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="s1">---</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="s1">Use citations like this [@Angelou1969] or this [-@Cohen1963]. These will auto-complete if you use the VSCode plugin.</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
 <h2 id="compiling-documents-with-citations">Compiling Documents with Citations</h2>
 <p>Most importantly for our purposes, we should be able to compile a document that includes citations automatically from a database. We can do this by specifying the <code>citeproc_bibliography</code> argument in <code>PandocArgs</code>. This argument should be a path to a <code>.bib</code> file.</p>
 <p>In this example I write the bibtex data to a temporary file which is then used to compile the document.</p>
-<pre><code class="language-python">bib_file_text = '''
-@book{Angelou1969,
-    place={New York},
-    edition={1},
-    title={I Know Why the Caged Bird Sings},
-    ISBN={9780375507892},
-    publisher={Random House},
-    author={Angelou, Maya},
-    year={1969},
-    month={Jan.}
-}
-@article{Cohen1963,
-    author = &quot;P. J. Cohen&quot;,
-    title = &quot;The independence of the continuum hypothesis&quot;,
-    journal = &quot;Proceedings of the National Academy of Sciences&quot;,
-    year = 1963,
-    volume = &quot;50&quot;,
-    number = &quot;6&quot;,
-    pages = &quot;1143--1148&quot;,
-}
-'''
-
-md_file_text = '''
-Use citations like this [@Angelou1969] or this [-@Cohen1963].
-'''.strip()
-
-with tempfile.TemporaryDirectory() as tmpdir:
-    bib_fname = tmpdir + '/refs.bib'
-    with open(bib_fname, 'w') as f:
-        f.write(bib_file_text)
-
-
-    doc = pymddoc.MarkdownDoc.from_str(md_file_text)
-    html = doc.render_html(
-        pandoc_args=pymddoc.PandocArgs(
-            citeproc_bibliography=bib_fname,
-        )
-    )
-display(HTML(html))
-</code></pre>
-<p>Use citations like this <span class="citation"
-data-cites="Angelou1969">(Angelou 1969)</span> or this <span
-class="citation" data-cites="Cohen1963">(1963)</span>.</p>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-Angelou1969" class="csl-entry" role="doc-biblioentry">
-Angelou, Maya. 1969. <em>I Know Why the Caged Bird Sings</em>. 1st ed.
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">bib_file_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="s1">@book{Angelou1969,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="s1">    place={New York},</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="s1">    edition=</span><span class="si">{1}</span><span class="s1">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="s1">    title={I Know Why the Caged Bird Sings},</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="s1">    ISBN=</span><span class="si">{9780375507892}</span><span class="s1">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="s1">    publisher={Random House},</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="s1">    author={Angelou, Maya},</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="s1">    year=</span><span class="si">{1969}</span><span class="s1">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="s1">    month={Jan.}</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="s1">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="s1">@article{Cohen1963,</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="s1">    author = &quot;P. J. Cohen&quot;,</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="s1">    title = &quot;The independence of the continuum hypothesis&quot;,</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="s1">    journal = &quot;Proceedings of the National Academy of Sciences&quot;,</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="s1">    year = 1963,</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="s1">    volume = &quot;50&quot;,</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="s1">    number = &quot;6&quot;,</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="s1">    pages = &quot;1143--1148&quot;,</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="s1">}</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="n">md_file_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="s1">Use citations like this [@Angelou1969] or this [-@Cohen1963].</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">:</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28"></a>    <span class="n">bib_fname</span> <span class="o">=</span> <span class="n">tmpdir</span> <span class="o">+</span> <span class="s1">&#39;/refs.bib&#39;</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">bib_fname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30"></a>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bib_file_text</span><span class="p">)</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31"></a>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32"></a>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33"></a>    <span class="n">doc</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="n">md_file_text</span><span class="p">)</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34"></a>    <span class="n">html</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">render_html</span><span class="p">(</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35"></a>        <span class="n">pandoc_args</span><span class="o">=</span><span class="n">pymddoc</span><span class="o">.</span><span class="n">PandocArgs</span><span class="p">(</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36"></a>            <span class="n">citeproc_bibliography</span><span class="o">=</span><span class="n">bib_fname</span><span class="p">,</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37"></a>        <span class="p">)</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38"></a>    <span class="p">)</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>text:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;IPython.core.display.HTML object&gt;
+</code></pre></div>
+<p>html:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;p&gt;Use citations like this &lt;span class=&quot;citation&quot;
+data-cites=&quot;Angelou1969&quot;&gt;(Angelou 1969)&lt;/span&gt; or this &lt;span
+class=&quot;citation&quot; data-cites=&quot;Cohen1963&quot;&gt;(1963)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&quot;refs&quot; class=&quot;references csl-bib-body hanging-indent&quot;
+role=&quot;doc-bibliography&quot;&gt;
+&lt;div id=&quot;ref-Angelou1969&quot; class=&quot;csl-entry&quot; role=&quot;doc-biblioentry&quot;&gt;
+Angelou, Maya. 1969. &lt;em&gt;I Know Why the Caged Bird Sings&lt;/em&gt;. 1st ed.
 Random House.
-</div>
-<div id="ref-Cohen1963" class="csl-entry" role="doc-biblioentry">
-Cohen, P. J. 1963. <span>“The Independence of the Continuum
-Hypothesis.”</span> <em>Proceedings of the National Academy of
-Sciences</em> 50 (6): 1143–48.
-</div>
-</div>
-
+&lt;/div&gt;
+&lt;div id=&quot;ref-Cohen1963&quot; class=&quot;csl-entry&quot; role=&quot;doc-biblioentry&quot;&gt;
+Cohen, P. J. 1963. &lt;span&gt;“The Independence of the Continuum
+Hypothesis.”&lt;/span&gt; &lt;em&gt;Proceedings of the National Academy of
+Sciences&lt;/em&gt; 50 (6): 1143–48.
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div>
+<hr />
 <p>You can change the bibtex file if you have any issues with the citation information.</p>
 
 
@@ -590,7 +626,7 @@ Sciences</em> 50 (6): 1143–48.
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>

@@ -20,7 +20,7 @@
     
     
       
-        <title>Inserting Table and Figure Data - PyMdDoc</title>
+        <title>Inserting Table and Figure Data - PyMdDoc Python Package</title>
       
     
     
@@ -81,7 +81,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="PyMdDoc" class="md-header__button md-logo" aria-label="PyMdDoc" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-header__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -95,7 +95,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            PyMdDoc
+            PyMdDoc Python Package
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -185,13 +185,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="PyMdDoc" class="md-nav__button md-logo" aria-label="PyMdDoc" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-nav__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    PyMdDoc
+    PyMdDoc Python Package
   </label>
   
     <div class="md-nav__source">
@@ -218,7 +218,26 @@
         
   
   <span class="md-ellipsis">
-    PyMdDoc Python Package
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Command-line Interface
   </span>
   
 
@@ -356,60 +375,16 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Depricated
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            Depricated
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../depricated/z-intro/" class="md-nav__link">
+      <a href="../d-ipynb2md/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Depricated Introduction
+    Jupyter notebooks to Markdown
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -491,129 +466,193 @@
 <li>Translate table data in CSV or Excel format to Markdown for inclusion in the document.</li>
 <li>Convert Vector graphic files to PNG format for inclusion in the document.</li>
 </ul>
-<pre><code class="language-python">import sys
-sys.path.append('..')
-import pymddoc
-
-import tempfile
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">sys</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">pymddoc</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kn">import</span> <span class="nn">tempfile</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
 <h2 id="useful-constants">Useful Constants</h2>
 <p>First, it is worth mentioning some defined constants that can be helpful for composing documents. Use them as you would any other Jinja variable.</p>
 <ul>
 <li><strong>OUTPUT_FORMAT</strong>: the output format type of the document.</li>
 <li><strong>HOME_DIR</strong>: the home directory of the computer where you're rendering the document.</li>
 </ul>
-<pre><code class="language-python">example_markdown = '''
-Document format: {{OUTPUT_FORMAT}}
-
-Home directory: {{HOME_DIR}}
-'''.strip()
-
-doc = pymddoc.MarkdownDoc.from_str(example_markdown)
-print(doc.render_html())
-</code></pre>
-<pre><code>&lt;p&gt;Document format: html&lt;/p&gt;
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">example_markdown</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="s1">Document format: {{OUTPUT_FORMAT}}</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="s1">Home directory: {{HOME_DIR}}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="n">example_markdown</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">render_html</span><span class="p">())</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;p&gt;Document format: html&lt;/p&gt;
 &lt;p&gt;Home directory: /home/devin&lt;/p&gt;
-</code></pre>
+</code></pre></div>
+<hr />
 <p>While Pandoc supports a number of output formats, it is necessarily inconsistent in how it renders various elements of the document. Using the <code>OUTPUT_FORMAT</code> constant, you can conditionally render elements based on the output format. </p>
-<pre><code class="language-python">example_markdown = '''
-{% if OUTPUT_FORMAT == 'html' %}
-This is an HTML document.
-{% else %}
-This is not an HTML document.
-{% endif %}
-'''.strip()
-
-doc = pymddoc.MarkdownDoc.from_str(example_markdown)
-print(doc.render_html())
-</code></pre>
-<pre><code>&lt;p&gt;This is an HTML document.&lt;/p&gt;
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">example_markdown</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="s1">{</span><span class="si">% i</span><span class="s1">f OUTPUT_FORMAT == &#39;html&#39; %}</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="s1">This is an HTML document.</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="s1">{</span><span class="si">% e</span><span class="s1">lse %}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="s1">This is not an HTML document.</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="s1">{</span><span class="si">% e</span><span class="s1">ndif %}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="n">example_markdown</span><span class="p">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">render_html</span><span class="p">())</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;p&gt;This is an HTML document.&lt;/p&gt;
+</code></pre></div>
+<hr />
 <h2 id="insert-tables">Insert Tables</h2>
 <p>There are two methods for inserting tables into your documents: <code>csv_to_markdown</code> and <code>excel_to_markdown</code>. Both methods read a file from disk and insert it into the document as markdown.</p>
-<pre><code class="language-python">print(pymddoc.excel_to_markdown.__doc__)
-</code></pre>
-<pre><code>Read an excel file from disk and insert it into the document as markdown.
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">pymddoc</span><span class="o">.</span><span class="n">excel_to_markdown</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>Read an excel file from disk and insert it into the document as markdown.
     Args:
         fname: str: The file name to read.
         num_rows: int | None: The number of rows to read.
         read_kwargs: dict[str,typing.Any] | None: The keyword arguments to pass to the read
             function.
         to_markdown_kwargs: dict[str,typing.Any] | None: The keyword arguments to pass to the
-</code></pre>
-<pre><code class="language-python">print(pymddoc.csv_to_markdown.__doc__)
-</code></pre>
-<pre><code>Read a csv file from disk and insert it into the document as markdown.
+</code></pre></div>
+<hr />
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">pymddoc</span><span class="o">.</span><span class="n">csv_to_markdown</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>Read a csv file from disk and insert it into the document as markdown.
     Args:
         fname: str: The file name to read.
         num_rows: int | None: The number of rows to read.
         read_kwargs: dict[str,typing.Any] | None: The keyword arguments to pass to the read
             function.
         to_markdown_kwargs: dict[str,typing.Any] | None: The keyword arguments to pass to the
-</code></pre>
+</code></pre></div>
+<hr />
 <p>Call them from within the markdown document.</p>
-<pre><code class="language-python">example_markdown = '''
-{{csv_to_markdown('../tests/test_data/testtable.csv', num_rows=2)}}
-'''.strip()
-
-doc = pymddoc.MarkdownDoc.from_str(example_markdown)
-print(doc.render_html())
-</code></pre>
-<pre><code>&lt;table&gt;
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">example_markdown</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="s1">{{csv_to_markdown(&#39;../tests/test_data/testtable.csv&#39;, num_rows=2)}}</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="n">example_markdown</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">render_html</span><span class="p">())</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;table&gt;
 &lt;thead&gt;
-&lt;tr class="header"&gt;
-&lt;th style="text-align: left;"&gt;name&lt;/th&gt;
-&lt;th style="text-align: right;"&gt;number&lt;/th&gt;
+&lt;tr class=&quot;header&quot;&gt;
+&lt;th style=&quot;text-align: left;&quot;&gt;name&lt;/th&gt;
+&lt;th style=&quot;text-align: right;&quot;&gt;number&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class="odd"&gt;
-&lt;td style="text-align: left;"&gt;one&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;1&lt;/td&gt;
+&lt;tr class=&quot;odd&quot;&gt;
+&lt;td style=&quot;text-align: left;&quot;&gt;one&lt;/td&gt;
+&lt;td style=&quot;text-align: right;&quot;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class="even"&gt;
-&lt;td style="text-align: left;"&gt;two&lt;/td&gt;
-&lt;td style="text-align: right;"&gt;2&lt;/td&gt;
+&lt;tr class=&quot;even&quot;&gt;
+&lt;td style=&quot;text-align: left;&quot;&gt;two&lt;/td&gt;
+&lt;td style=&quot;text-align: right;&quot;&gt;2&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</code></pre>
+</code></pre></div>
+<hr />
 <h2 id="embed-vector-graphics">Embed Vector Graphics</h2>
 <p>While it is possible to embed vector graphic types such as SVG and PDF into documents using additional software, the following built-in methods will convert these file types to PNG and embed them directly into the document when it is rendered. This is ideal for cases where you want to embed outputs from analyses for publication, and it is all controlled within the markdown document - even the DPI of the output image.</p>
-<pre><code class="language-python">print(pymddoc.svg_to_png.__doc__)
-</code></pre>
-<pre><code>Convert an svg file to a png file stored in /tmp for pandoc compilation.
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">pymddoc</span><span class="o">.</span><span class="n">svg_to_png</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>Convert an svg file to a png file stored in /tmp for pandoc compilation.
     Args:
         url: str: The url of the svg file to convert.
         dpi: int: The dpi of the output image.
         kwargs: dict: Additional keyword arguments to pass to cairosvg.svg2png().
-</code></pre>
-<pre><code class="language-python">print(pymddoc.pdf_to_png.__doc__)
-</code></pre>
-<pre><code>Convert a pdf file to a png file stored in /tmp for pandoc compilation.
+</code></pre></div>
+<hr />
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">pymddoc</span><span class="o">.</span><span class="n">pdf_to_png</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>Convert a pdf file to a png file stored in /tmp for pandoc compilation.
     Args:
         filename: str: The filename of the pdf file to convert.
         pageno: int: The page number of the svg file to convert.
         dpi: int: The dpi of the output image.
         kwargs: dict: Additional keyword arguments to pass to page.get_pixmap().
-</code></pre>
+</code></pre></div>
+<hr />
 <p>Call them from within the markdown document.</p>
-<pre><code class="language-python">example_markdown = '''
-{# embed the pdf as a png. This one is on the web. #}
-![]({{svg_to_png(&quot;https://storage.googleapis.com/public_data_09324832787/static_factory_methods.svg&quot;, dpi=150)}})
-
-{# embed the pdf as a png #}
-![]({{pdf_to_png(&quot;../tests/test_data/drawing.pdf&quot;, dpi=150)}})
-
-{# embed the pdf directly. This also works. #}
-![](../tests/test_data/drawing.pdf)
-'''.strip()
-
-doc = pymddoc.MarkdownDoc.from_str(example_markdown)
-
-with tempfile.TemporaryDirectory() as tmpdirname:
-    doc.render_to_pdf(f'{tmpdirname}/output.pdf')
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">example_markdown</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="s1">{# embed the pdf as a png. This one is on the web. #}</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="s1">![]({{svg_to_png(&quot;https://storage.googleapis.com/public_data_09324832787/static_factory_methods.svg&quot;, dpi=150)}})</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="s1">{# embed the pdf as a png #}</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="s1">![]({{pdf_to_png(&quot;../tests/test_data/drawing.pdf&quot;, dpi=150)}})</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="s1">{# embed the pdf directly. This also works. #}</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="s1">![](../tests/test_data/drawing.pdf)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="n">example_markdown</span><span class="p">)</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdirname</span><span class="p">:</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>    <span class="n">doc</span><span class="o">.</span><span class="n">render_to_pdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">tmpdirname</span><span class="si">}</span><span class="s1">/output.pdf&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
 
 
 
@@ -652,7 +691,7 @@ with tempfile.TemporaryDirectory() as tmpdirname:
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>

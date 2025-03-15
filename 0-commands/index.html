@@ -9,18 +9,22 @@
       
       
       
+        <link rel="prev" href="..">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../a-api_introduction/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.10">
     
     
       
-        <title>PyMdDoc Python Package</title>
+        <title>Command-line Interface - PyMdDoc Python Package</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.fad675c6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
       
       
 
@@ -39,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -60,6 +64,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#command-line-interface" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -72,7 +81,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="PyMdDoc Python Package" class="md-header__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-header__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -92,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Command-line Interface
             
           </span>
         </div>
@@ -176,7 +185,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="PyMdDoc Python Package" class="md-nav__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-nav__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -205,7 +214,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -222,9 +231,29 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/0-commands/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Command-line Interface
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -233,6 +262,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#extract-yaml-header-metadata-from-markdown-files-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract YAML header metadata from markdown files: metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#render-markdown-files-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      Render markdown files: render
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -243,7 +310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/a-api_introduction/" class="md-nav__link">
+      <a href="../a-api_introduction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -262,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/b-tables_and_figures/" class="md-nav__link">
+      <a href="../b-tables_and_figures/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -281,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/c-citations/" class="md-nav__link">
+      <a href="../c-citations/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -300,7 +367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/d-ipynb2md/" class="md-nav__link">
+      <a href="../d-ipynb2md/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -330,6 +397,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#extract-yaml-header-metadata-from-markdown-files-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract YAML header metadata from markdown files: metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#render-markdown-files-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      Render markdown files: render
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -341,8 +436,53 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+<h1 id="command-line-interface">Command-line Interface</h1>
+<p>The command-line interface is sufficient for cases where you do not need to include custom functions in your code. Docs for the ipynb conversion commands can be seen in the section on that topic, and here I will cover <code>render</code> and <code>metadata</code> commands.</p>
+<p>Like most command line interfaces, you can use the <code>--help</code> flag to get a list of available commands.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pymddoc<span class="w"> </span>--help
+</span></code></pre></div>
+<p>output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Usage: python -m pymddoc [OPTIONS] COMMAND [ARGS]...
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Options:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>--help  Show this message and exit.
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Commands:
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>metadata        Extract metadata from a markdown file as json.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>render          Render and compile a markdown file.
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>ipynb2md        Convert a Jupyter notebook (json file) to a markdown file.
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>ipynb2md-multi  Convert multiple Jupyter notebooks (json files) to markdown files.
+</span></code></pre></div></p>
+<h2 id="extract-yaml-header-metadata-from-markdown-files-metadata">Extract YAML header metadata from markdown files: <code>metadata</code></h2>
+<p>This command will output formatted JSON that includes the yaml header information from the markdown file. This is useful for debugging and taking a quick look at markdown files.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pymddoc<span class="w"> </span>metadata<span class="w"> </span>--help
+</span></code></pre></div>
+<h2 id="render-markdown-files-render">Render markdown files: <code>render</code></h2>
+<p>This command will render the markdown file using jinja and compile the rendered file to the desired format (html, pdf, or docx). This allows you to use all of the built-in functions and features of <code>pymddoc</code> without writing any code.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pymddoc<span class="w"> </span>render<span class="w"> </span>--help
+</span></code></pre></div>
+<p>output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Usage: python -m pymddoc render [OPTIONS] MD_FILE OUT_FILE
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  Render and compile a markdown file.
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Options:
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  --out_format [html|pdf|docx]
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  --strict_render BOOLEAN
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  --help                        Show this message and exit.
+</span></code></pre></div></p>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -375,10 +515,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["content.code.copy"], "search": "/assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.6c14ae12.min.js"></script>
+      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
       
     
   </body>

@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../0-commands/">
       
       
         <link rel="next" href="../b-tables_and_figures/">
@@ -20,7 +20,7 @@
     
     
       
-        <title>API Introduction - PyMdDoc</title>
+        <title>API Introduction - PyMdDoc Python Package</title>
       
     
     
@@ -81,7 +81,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="PyMdDoc" class="md-header__button md-logo" aria-label="PyMdDoc" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-header__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -95,7 +95,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            PyMdDoc
+            PyMdDoc Python Package
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -185,13 +185,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="PyMdDoc" class="md-nav__button md-logo" aria-label="PyMdDoc" data-md-component="logo">
+    <a href=".." title="PyMdDoc Python Package" class="md-nav__button md-logo" aria-label="PyMdDoc Python Package" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    PyMdDoc
+    PyMdDoc Python Package
   </label>
   
     <div class="md-nav__source">
@@ -218,7 +218,26 @@
         
   
   <span class="md-ellipsis">
-    PyMdDoc Python Package
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0-commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Command-line Interface
   </span>
   
 
@@ -365,60 +384,16 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Depricated
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            Depricated
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../depricated/z-intro/" class="md-nav__link">
+      <a href="../d-ipynb2md/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Depricated Introduction
+    Jupyter notebooks to Markdown
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -506,69 +481,116 @@
 <h1 id="api-introduction">API Introduction</h1>
 <p>This page describes the API of the <code>PyMdDoc</code> package.</p>
 <p>The <code>MarkdownDoc</code> class maintains the main interface for creating documents. It manages a single markdown document which can be rendered and converted to another document type. It can be created from a string using <code>from_str()</code> or a file using <code>from_file()</code>.</p>
-<pre><code class="language-python">import sys
-sys.path.append('..')
-import pymddoc
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">sys</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">pymddoc</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
 <p>I will use this functions to make html outputs more readable.</p>
-<pre><code class="language-python">def print_formatted_html(html_string):
-    '''Print HTML that is formatted with indentation.'''
-    from bs4 import BeautifulSoup
-    soup = BeautifulSoup(html_string, 'html.parser')
-    clean_html = soup.prettify()
-    print(clean_html)
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">def</span> <span class="nf">print_formatted_html</span><span class="p">(</span><span class="n">html_string</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;Print HTML that is formatted with indentation.&#39;&#39;&#39;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_string</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="n">clean_html</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">prettify</span><span class="p">()</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">clean_html</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
 <h3 id="ingest-markdown-documents">Ingest Markdown Documents</h3>
 <p>The following example demonstrates how to create a simple markdown document.</p>
-<pre><code class="language-python">example_markdown = '''
----
-title: Example Markdown
-author: John Doe
-date: 2021-01-01
----
-
-{# this is a jinja comment #}
-
-# Header 1
-
-You can use italics and bold text as supported by pandoc.
-
-::: { #favorite .note font-size=&quot;1.5em&quot; }
-You can also create Div blocks with ids, attributes, and other attributes.
-:::
-
-You can also use code snippets:
-
-```python
-    def example_function():
-        return &quot;Hello, world!&quot;
-```.
-&lt;br/&gt;
-'''.strip()
-
-doc = pymddoc.MarkdownDoc.from_str(example_markdown)
-print(doc)
-</code></pre>
-<pre><code>MarkdownDoc({'author': 'John Doe', 'date': '2021-01-01', 'title': 'Example Markdown'})
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">example_markdown</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="s1">---</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="s1">title: Example Markdown</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="s1">author: John Doe</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="s1">date: 2021-01-01</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="s1">---</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="s1">{# this is a jinja comment #}</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="s1"># Header 1</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="s1">You can use italics and bold text as supported by pandoc.</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="s1">::: { #favorite .note font-size=&quot;1.5em&quot; }</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="s1">You can also create Div blocks with ids, attributes, and other attributes.</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="s1">:::</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="s1">You can also use code snippets:</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="s1">```python</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="s1">    def example_function():</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="s1">        return &quot;Hello, world!&quot;</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="s1">```.</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="s1">&lt;br/&gt;</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="n">example_markdown</span><span class="p">)</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>MarkdownDoc({&#39;author&#39;: &#39;John Doe&#39;, &#39;date&#39;: &#39;2021-01-01&#39;, &#39;title&#39;: &#39;Example Markdown&#39;})
+</code></pre></div>
+<hr />
 <p>You can extract the YAML header metadata from the document using the <code>extract_metadata()</code> method. This method returns a dictionary of the metadata from the document.</p>
-<pre><code class="language-python">doc.extract_metadata()
-</code></pre>
-<pre><code>{'author': 'John Doe', 'date': '2021-01-01', 'title': 'Example Markdown'}
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">doc</span><span class="o">.</span><span class="n">extract_metadata</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<p>text:</p>
+<div class="language-text highlight"><pre><span></span><code>{&#39;author&#39;: &#39;John Doe&#39;, &#39;date&#39;: &#39;2021-01-01&#39;, &#39;title&#39;: &#39;Example Markdown&#39;}
+</code></pre></div>
+<hr />
 <h3 id="rendering-documents">Rendering Documents</h3>
 <p>There are several different methods for rendering markdown documents to other document types.</p>
 <p>You can use the method <code>render_to_string()</code> to convert the document to any text-based format.</p>
-<pre><code class="language-python">html = doc.render_to_string('html')
-print_formatted_html(html)
-</code></pre>
-<pre><code>&lt;h1 id="header-1"&gt;
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">html</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">print_formatted_html</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;h1 id=&quot;header-1&quot;&gt;
  Header 1
 &lt;/h1&gt;
 &lt;p&gt;
  You can use italics and bold text as supported by pandoc.
 &lt;/p&gt;
-&lt;div class="note" data-font-size="1.5em" id="favorite"&gt;
+&lt;div class=&quot;note&quot; data-font-size=&quot;1.5em&quot; id=&quot;favorite&quot;&gt;
  &lt;p&gt;
   You can also create Div blocks with ids, attributes, and other
 attributes.
@@ -579,33 +601,46 @@ attributes.
 &lt;/p&gt;
 &lt;p&gt;
  &lt;code&gt;
-  python     def example_function():         return "Hello, world!"
+  python     def example_function():         return &quot;Hello, world!&quot;
  &lt;/code&gt;
  .
  &lt;br/&gt;
 &lt;/p&gt;
-</code></pre>
+</code></pre></div>
+<hr />
 <p>To convert to pdf or docx formats, you will want to write to a file. In this case, you can use the <code>render_to_file()</code> method. It can automatically infer the file type using the file extension.</p>
-<pre><code class="language-python">import tempfile
-with tempfile.TemporaryDirectory() as tempdir:
-
-    doc.render_to_file(f'{tempdir}/test.pdf')
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">tempfile</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tempdir</span><span class="p">:</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="n">doc</span><span class="o">.</span><span class="n">render_to_file</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">tempdir</span><span class="si">}</span><span class="s1">/test.pdf&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
 <p>There are also some type-specific methods for rendering html, pdf, or docx files.</p>
-<pre><code class="language-python">with tempfile.TemporaryDirectory() as tempdir:
-
-    doc.render_to_pdf(f'{tempdir}/test.pdf')
-    doc.render_to_docx(f'{tempdir}/test.docx')
-    html = doc.render_html()
-print_formatted_html(html)
-</code></pre>
-<pre><code>&lt;h1 id="header-1"&gt;
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tempdir</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="n">doc</span><span class="o">.</span><span class="n">render_to_pdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">tempdir</span><span class="si">}</span><span class="s1">/test.pdf&#39;</span><span class="p">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="n">doc</span><span class="o">.</span><span class="n">render_to_docx</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">tempdir</span><span class="si">}</span><span class="s1">/test.docx&#39;</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="n">html</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">render_html</span><span class="p">()</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="n">print_formatted_html</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;h1 id=&quot;header-1&quot;&gt;
  Header 1
 &lt;/h1&gt;
 &lt;p&gt;
  You can use italics and bold text as supported by pandoc.
 &lt;/p&gt;
-&lt;div class="note" data-font-size="1.5em" id="favorite"&gt;
+&lt;div class=&quot;note&quot; data-font-size=&quot;1.5em&quot; id=&quot;favorite&quot;&gt;
  &lt;p&gt;
   You can also create Div blocks with ids, attributes, and other
 attributes.
@@ -616,42 +651,62 @@ attributes.
 &lt;/p&gt;
 &lt;p&gt;
  &lt;code&gt;
-  python     def example_function():         return "Hello, world!"
+  python     def example_function():         return &quot;Hello, world!&quot;
  &lt;/code&gt;
  .
  &lt;br/&gt;
 &lt;/p&gt;
-</code></pre>
+</code></pre></div>
+<hr />
 <h3 id="jinja-templating-features">Jinja Templating Features</h3>
 <p>You can pass variables to be inserted in the markdown document using Jinja templating with the <code>vars</code> argument to most render functions.</p>
-<pre><code class="language-python">d = pymddoc.MarkdownDoc.from_str('{{ text_here }}')
-html = d.render_html(vars={'text_here': 'Hello, world!'})
-print_formatted_html(html)
-</code></pre>
-<pre><code>&lt;p&gt;
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">d</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="s1">&#39;{{ text_here }}&#39;</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">html</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">render_html</span><span class="p">(</span><span class="nb">vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text_here&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello, world!&#39;</span><span class="p">})</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="n">print_formatted_html</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;p&gt;
  Hello, world!
 &lt;/p&gt;
-</code></pre>
+</code></pre></div>
+<hr />
 <p>While Pandoc supports a number of output formats, it is necessarily inconsistent in how it renders various elements of the document. Using the <code>OUTPUT_FORMAT</code> constant available through <code>PyMdDoc</code>, you can conditionally render elements based on the output format. </p>
-<pre><code class="language-python">example_markdown = '''
-{% if OUTPUT_FORMAT == 'html' %}
-This is an HTML document.
-{% else %}
-This is not an HTML document.
-{% endif %}
-'''.strip()
-
-doc = pymddoc.MarkdownDoc.from_str(example_markdown)
-print(doc.render_html())
-</code></pre>
-<pre><code>&lt;p&gt;This is an HTML document.&lt;/p&gt;
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">example_markdown</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="s1">{</span><span class="si">% i</span><span class="s1">f OUTPUT_FORMAT == &#39;html&#39; %}</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="s1">This is an HTML document.</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="s1">{</span><span class="si">% e</span><span class="s1">lse %}</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="s1">This is not an HTML document.</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="s1">{</span><span class="si">% e</span><span class="s1">ndif %}</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">MarkdownDoc</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="n">example_markdown</span><span class="p">)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">render_html</span><span class="p">())</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;p&gt;This is an HTML document.&lt;/p&gt;
+</code></pre></div>
+<hr />
 <h3 id="pandoc-arguments">Pandoc Arguments</h3>
 <p>You can use the <code>pandoc_args</code> argument to pass additional arguments to the pandoc command from any render function. This can be useful for specifying the output format or other options.</p>
 <p>Pass arguments using the <code>PandocArgs</code> dataclass. The docstring of that class contains a list of all the available arguments.</p>
-<pre><code class="language-python">print(pymddoc.PandocArgs.__doc__)
-</code></pre>
-<pre><code>Dataclass that contains arguments for pandoc conversion.
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">pymddoc</span><span class="o">.</span><span class="n">PandocArgs</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>stdout:</p>
+<div class="language-text highlight"><pre><span></span><code>Dataclass that contains arguments for pandoc conversion.
         See this page for more about pandoc markdown:
             https://quarto.org/docs/authoring/markdown-basics.html
     Args:
@@ -663,19 +718,31 @@ print(doc.render_html())
         template: adds the --template={fname} argument to the pandoc command.
         extra_args: additional arguments to add to the pandoc command.
         **pandoc_kwargs: passed to pandoc.
-</code></pre>
+</code></pre></div>
+<hr />
 <p>And you can pass it as an argument to any render function.</p>
-<pre><code class="language-python">with tempfile.TemporaryDirectory() as tempdir:
-
-    doc.render_to_pdf(
-        output_path=f'{tempdir}/test.pdf',
-        pandoc_args = pymddoc.PandocArgs(
-            toc = True,
-            embed_resources=True,
-            extra_args=['--mathjax'],
-        )
-    )
-</code></pre>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tempdir</span><span class="p">:</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>    <span class="n">doc</span><span class="o">.</span><span class="n">render_to_pdf</span><span class="p">(</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>        <span class="n">output_path</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">tempdir</span><span class="si">}</span><span class="s1">/test.pdf&#39;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>        <span class="n">pandoc_args</span> <span class="o">=</span> <span class="n">pymddoc</span><span class="o">.</span><span class="n">PandocArgs</span><span class="p">(</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>            <span class="n">toc</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>            <span class="n">embed_resources</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>            <span class="n">extra_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;--mathjax&#39;</span><span class="p">],</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>        <span class="p">)</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>    <span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
 <p>See other pages for examples of using custom functions within the markdown document.</p>
 
 
@@ -715,7 +782,7 @@ print(doc.render_html())
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
