@@ -51,8 +51,9 @@ requirements:
 	pipreqs --force $(PACKAGE_NAME)/ --savepath $(REQUIREMENTS_FOLDER)/used_packages.txt
 
 
-compile_examples:
-	-jupyter nbconvert --to markdown $(EXAMPLE_NOTEBOOK_FOLDER)/*.ipynb
+compile_examples: reinstall
+	#-jupyter nbconvert --to markdown $(EXAMPLE_NOTEBOOK_FOLDER)/*.ipynb
+	python -m pymddoc ipynb2md-multi $(EXAMPLE_NOTEBOOK_FOLDER)/*.ipynb
 	-mv $(EXAMPLE_NOTEBOOK_FOLDER)/*.md $(DOCS_FOLDER)
 
 test_example_py_scripts:
