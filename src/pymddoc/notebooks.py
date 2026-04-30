@@ -2,10 +2,10 @@ import jinja2
 
 from .util import indent
 
-def convert_ipynb2md(template: str, ipynb_data: dict) -> str:
+def convert_ipynb2md(template: str, ipynb_data: dict, linenums: bool) -> str:
     env = jinja2.Environment()
     template = env.from_string(template, globals={'indent': indent})
-    markdown = template.render(**ipynb_data)
+    markdown = template.render(**ipynb_data, linenums=linenums)
     return markdown
 
 

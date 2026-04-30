@@ -7,7 +7,7 @@ ipynb2md_default = '''
         
         ---
 
-        ``` python linenums="1"
+        ```python {% if linenums %}linenums="1"{% endif %}
         {{ cell.source|join("") }}
         ```
         {% for output in cell.outputs%}
