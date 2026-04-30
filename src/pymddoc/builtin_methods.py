@@ -3,7 +3,6 @@ import pandas as pd
 import typing
 import cairosvg
 import functools
-import fitz
 
 
 from .util import val_or_None, TempPath
@@ -51,6 +50,8 @@ def pdf_to_png(tmpfolder: str, filename: str, pageno: int = 0, dpi: int = 300, *
         dpi: int: The dpi of the output image.
         kwargs: dict: Additional keyword arguments to pass to page.get_pixmap().
     '''
+    import fitz
+
     outfile = f"{tmpfolder}/{pathlib.Path(filename).name}.png"
     doc = fitz.open(filename)
     page = doc.load_page(pageno)
