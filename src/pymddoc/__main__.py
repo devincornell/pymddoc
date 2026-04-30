@@ -28,7 +28,7 @@ def cli():
 @click.argument('ipynb_file', type=click.Path(exists=True))
 @click.argument('md_file', type=click.Path())
 @click.option("--template", type=click.Path(exists=True), default=None)
-@click.option("--linenums", type=click.BOOL, default=False)
+@click.option("--linenums", is_flag=True, default=False)
 def ipynb2md(ipynb_file: str, md_file: str, template: str, linenums: bool) -> None:
     '''Convert a Jupyter notebook (json file) to a markdown file.
     Description: reads a jupyter notebook as a regular json file, passes the json to the template,
